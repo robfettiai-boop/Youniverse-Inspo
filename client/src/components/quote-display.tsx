@@ -29,7 +29,7 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
 
       <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
         <button 
-          className="group relative px-6 py-3 bg-gradient-to-r from-gray-900 to-black text-white font-medium rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 overflow-hidden flex items-center justify-center"
+          className="group relative px-4 py-2 bg-gradient-to-r from-gray-900 to-black text-white font-medium rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 overflow-hidden flex items-center justify-center"
           onClick={onNewQuote}
           disabled={isLoading}
         >
