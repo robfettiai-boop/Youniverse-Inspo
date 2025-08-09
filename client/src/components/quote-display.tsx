@@ -29,18 +29,12 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
 
       <div className="flex flex-row gap-8 justify-center items-center">
         <button 
-          className="group text-black text-5xl font-black leading-none transform hover:scale-110 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 inline-flex items-center justify-center"
+          className="group text-black text-5xl font-medium leading-none transform hover:scale-110 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 inline-flex items-center justify-center"
           onClick={onNewQuote}
           disabled={isLoading}
-          style={{ 
-            fontWeight: '900',
-            textShadow: '1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000'
-          }}
+          style={{ fontWeight: '500' }}
         >
-          <span className="leading-none flex items-center justify-center font-black" style={{ 
-            fontWeight: '900',
-            textShadow: '1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000'
-          }}>
+          <span className="leading-none flex items-center justify-center font-medium" style={{ fontWeight: '500' }}>
             {isLoading ? '⟲' : '∞'}
           </span>
         </button>
