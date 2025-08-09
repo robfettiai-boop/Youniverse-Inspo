@@ -2,7 +2,7 @@
 export function makeLettersColored(text: string): React.ReactNode {
   if (!text) return text;
   
-  const parts = text.split(/(R|r|G|g|O|o)/);
+  const parts = text.split(/(R|r|G|g|O|o|P|p|B|b)/);
   
   return parts.map((part, index) => {
     if (part === 'R' || part === 'r') {
@@ -13,6 +13,12 @@ export function makeLettersColored(text: string): React.ReactNode {
     }
     if (part === 'O' || part === 'o') {
       return <span key={index} className="orange-o">{part}</span>;
+    }
+    if (part === 'P' || part === 'p') {
+      return <span key={index} className="pink-p">{part}</span>;
+    }
+    if (part === 'B' || part === 'b') {
+      return <span key={index} className="brown-b">{part}</span>;
     }
     return part;
   });
