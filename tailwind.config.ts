@@ -7,9 +7,10 @@ export default {
     extend: {
       fontFamily: {
         'inter': ['Inter', 'system-ui', 'sans-serif'],
-        sans: ["var(--font-sans)"],
-        serif: ["var(--font-serif)"],
-        mono: ["var(--font-mono)"],
+        'vogue': ['Vogue', 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['Vogue', 'Inter', 'system-ui', 'sans-serif'],
+        serif: ['Vogue', 'Georgia', 'serif'],
+        mono: ['Vogue', 'Menlo', 'monospace'],
       },
       colors: {
         background: "var(--background)",
