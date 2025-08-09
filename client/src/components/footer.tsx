@@ -1,3 +1,5 @@
+import logoImage from "@assets/GIN RED SQUARE_1754753650736.png";
+
 export default function Footer() {
   return (
     <footer className="relative z-10 bg-text-primary text-white py-12 px-4">
@@ -5,8 +7,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
-                <span className="text-white font-semibold text-lg">✨</span>
+              <div className="w-8 h-8 rounded-lg overflow-hidden">
+                <img 
+                  src={logoImage} 
+                  alt="Inspiration Logo" 
+                  className="w-full h-full object-cover"
+                />
               </div>
               <span className="text-xl font-semibold">Inspiration of the Day</span>
             </div>
