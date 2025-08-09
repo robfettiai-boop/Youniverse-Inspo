@@ -32,7 +32,7 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
           className="group text-black text-5xl font-medium leading-none transform hover:scale-110 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 inline-flex items-center justify-center"
           onClick={onNewQuote}
           disabled={isLoading}
-          style={{ fontWeight: '500' }}
+          style={{ fontWeight: '500', transform: 'translateY(4px)' }}
         >
           <span className="leading-none flex items-center justify-center font-medium" style={{ fontWeight: '500' }}>
             {isLoading ? '⟲' : '∞'}
