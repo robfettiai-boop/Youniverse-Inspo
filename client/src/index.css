@@ -169,3 +169,8 @@
     transform: translateY(-10px); 
   }
 }
+
+/* Red R styling */
+.red-r {
+  color: red !important;
+}
