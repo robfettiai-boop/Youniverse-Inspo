@@ -36,7 +36,7 @@ export default function Home() {
   };
 
   return (
-    <div className="font-inter bg-gray-50 min-h-screen">
+    <div className="font-inter bg-white min-h-screen">
       {/* Background Elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-32 h-32 gradient-bg rounded-full opacity-10 animate-float"></div>
