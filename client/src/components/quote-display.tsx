@@ -27,7 +27,7 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
         </div>
       )}
 
-      <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <div className="flex flex-row gap-8 justify-center items-center">
         <button 
           className="group text-black text-4xl font-black leading-none transform hover:scale-110 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 inline-flex items-center justify-center"
           onClick={onNewQuote}
