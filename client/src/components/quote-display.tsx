@@ -34,7 +34,7 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
           disabled={isLoading}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-gray-800 to-gray-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          <span className="relative text-xl">
+          <span className="relative text-2xl">
             {isLoading ? '⟲' : '∞'}
           </span>
           <div className="absolute inset-0 rounded-full bg-white opacity-0 group-active:opacity-20 transition-opacity duration-150"></div>
