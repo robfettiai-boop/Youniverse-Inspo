@@ -29,11 +29,15 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
 
       <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
         <button 
-          className="px-6 py-3 text-black border border-black hover:bg-black hover:text-white transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="group relative px-8 py-4 bg-gradient-to-r from-gray-900 to-black text-white font-medium rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 overflow-hidden"
           onClick={onNewQuote}
           disabled={isLoading}
         >
-          {isLoading ? '⟲' : '↻'}
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-800 to-gray-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <span className="relative text-xl">
+            {isLoading ? '⟲' : '↻'}
+          </span>
+          <div className="absolute inset-0 rounded-full bg-white opacity-0 group-active:opacity-20 transition-opacity duration-150"></div>
         </button>
         
         <button 
