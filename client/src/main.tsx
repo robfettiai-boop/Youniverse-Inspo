@@ -9,8 +9,7 @@ function applyColoredLettersGlobally() {
     const walker = document.createTreeWalker(
       document.body,
       NodeFilter.SHOW_TEXT,
-      null,
-      false
+      null
     );
     
     let node: Node | null;
