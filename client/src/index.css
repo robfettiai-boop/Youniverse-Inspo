@@ -171,22 +171,14 @@
 }
 
 /* Colored letter styling */
-.red-r {
-  color: red !important;
+.wine-red-r {
+  color: #722F37 !important;
 }
 
-.green-g {
-  color: forestgreen !important;
+.lapis-blue-b {
+  color: #26619C !important;
 }
 
-.orange-o {
-  color: orange !important;
-}
-
-.pink-p {
-  color: hotpink !important;
-}
-
-.brown-b {
-  color: #8B4513 !important;
+.gold-y {
+  color: #FFD700 !important;
 }
