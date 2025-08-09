@@ -1,5 +1,5 @@
 import type { Quote } from "@shared/schema";
-import { makeRsRed } from "../utils/redR";
+import { makeLettersColored } from "../utils/redR";
 
 interface QuoteDisplayProps {
   quote?: Quote;
@@ -19,7 +19,7 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
         </div>
       ) : quote ? (
         <blockquote className="text-2xl md:text-3xl lg:text-4xl font-light text-black leading-relaxed mb-12">
-          {makeRsRed(quote.text)}
+          {makeLettersColored(quote.text)}
         </blockquote>
       ) : (
         <div className="text-xl text-gray-600">
@@ -41,7 +41,7 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
           onClick={onShare}
           disabled={!quote}
         >
-          {makeRsRed("Share")}
+          {makeLettersColored("Share")}
         </button>
       </div>
     </div>

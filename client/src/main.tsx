@@ -2,8 +2,8 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
-// Global function to make all R letters red
-function applyRedRGlobally() {
+// Global function to make specific letters colored (R=red, G=forest green, O=orange)
+function applyColoredLettersGlobally() {
   const processTextNodes = () => {
     const textNodes: Text[] = [];
     const walker = document.createTreeWalker(
@@ -16,16 +16,16 @@ function applyRedRGlobally() {
     let node: Node | null;
     while ((node = walker.nextNode())) {
       const textNode = node as Text;
-      if (textNode.textContent && /[Rr]/.test(textNode.textContent)) {
+      if (textNode.textContent && /[RrGgOo]/.test(textNode.textContent)) {
         textNodes.push(textNode);
       }
     }
     
     textNodes.forEach(textNode => {
-      if (textNode.parentElement && !textNode.parentElement.classList.contains('red-r-processed')) {
+      if (textNode.parentElement && !textNode.parentElement.classList.contains('colored-letters-processed')) {
         const text = textNode.textContent || '';
-        if (/[Rr]/.test(text)) {
-          const parts = text.split(/([Rr])/);
+        if (/[RrGgOo]/.test(text)) {
+          const parts = text.split(/([RrGgOo])/);
           const fragment = document.createDocumentFragment();
           
           parts.forEach(part => {
@@ -34,13 +34,23 @@ function applyRedRGlobally() {
               span.className = 'red-r';
               span.textContent = part;
               fragment.appendChild(span);
+            } else if (part === 'G' || part === 'g') {
+              const span = document.createElement('span');
+              span.className = 'green-g';
+              span.textContent = part;
+              fragment.appendChild(span);
+            } else if (part === 'O' || part === 'o') {
+              const span = document.createElement('span');
+              span.className = 'orange-o';
+              span.textContent = part;
+              fragment.appendChild(span);
             } else if (part) {
               fragment.appendChild(document.createTextNode(part));
             }
           });
           
           if (textNode.parentElement) {
-            textNode.parentElement.classList.add('red-r-processed');
+            textNode.parentElement.classList.add('colored-letters-processed');
           }
           if (textNode.parentNode) {
             textNode.parentNode.replaceChild(fragment, textNode);
@@ -62,11 +72,11 @@ function applyRedRGlobally() {
   processTextNodes();
 }
 
-// Apply red R effect after DOM is ready
+// Apply colored letters effect after DOM is ready
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', applyRedRGlobally);
+  document.addEventListener('DOMContentLoaded', applyColoredLettersGlobally);
 } else {
-  applyRedRGlobally();
+  applyColoredLettersGlobally();
 }
 
 createRoot(document.getElementById("root")!).render(<App />);

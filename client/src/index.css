@@ -170,7 +170,15 @@
   }
 }
 
-/* Red R styling */
+/* Colored letter styling */
 .red-r {
   color: red !important;
+}
+
+.green-g {
+  color: forestgreen !important;
+}
+
+.orange-o {
+  color: orange !important;
 }
