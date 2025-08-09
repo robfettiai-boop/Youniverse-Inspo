@@ -32,7 +32,7 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
           onClick={onNewQuote}
           disabled={isLoading}
         >
-          {isLoading ? 'Loading...' : 'New Quote'}
+          {isLoading ? '⟲' : '↻'}
         </button>
         
         <button 
