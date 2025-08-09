@@ -1,8 +1,8 @@
-# Daily Inspiration - Motivational Quotes App
+# Inspiration of the Day - Motivational Quotes App
 
 ## Overview
 
-Daily Inspiration is a web application that delivers carefully curated motivational quotes to inspire users. The app features a clean, modern interface built with React and TypeScript, displaying random quotes with beautiful typography and smooth animations. Users can get fresh inspiration with each visit, share quotes, and enjoy a responsive design that works across all devices.
+Inspiration of the Day is a web application that delivers carefully curated motivational quotes to inspire users. The app features a clean, modern interface built with React and TypeScript, displaying random quotes with beautiful typography and smooth animations. Users can get fresh inspiration with each visit, share quotes, and enjoy a responsive design that works across all devices.
 
 The application follows a full-stack architecture with a React frontend, Express.js backend, and PostgreSQL database integration through Drizzle ORM. It's designed to be simple yet engaging, focusing on delivering inspirational content in an aesthetically pleasing way.
 

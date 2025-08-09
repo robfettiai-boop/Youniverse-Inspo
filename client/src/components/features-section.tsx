@@ -5,7 +5,7 @@ export default function FeaturesSection() {
     <section className="relative z-10 py-20 px-4 bg-white">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Why Daily Inspiration?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">Why Inspiration of the Day?</h2>
           <p className="text-xl text-text-muted max-w-2xl mx-auto">Carefully curated quotes to spark creativity, motivation, and positive thinking in your daily life.</p>
         </div>
         

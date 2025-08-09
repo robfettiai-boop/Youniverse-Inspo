@@ -6,7 +6,7 @@ export default function Header() {
           <div className="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
             <span className="text-white font-semibold text-lg">✨</span>
           </div>
-          <span className="text-xl font-semibold text-text-primary">Daily Inspiration</span>
+          <span className="text-xl font-semibold text-text-primary">Inspiration of the Day</span>
         </div>
         
         <div className="hidden md:flex space-x-8">

@@ -8,7 +8,7 @@ export default function Footer() {
               <div className="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
                 <span className="text-white font-semibold text-lg">✨</span>
               </div>
-              <span className="text-xl font-semibold">Daily Inspiration</span>
+              <span className="text-xl font-semibold">Inspiration of the Day</span>
             </div>
             <p className="text-gray-300 max-w-md">Empowering minds with carefully curated motivational quotes. Start each day with purpose and positivity.</p>
           </div>
@@ -35,7 +35,7 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-gray-600 mt-8 pt-8 text-center text-gray-300">
-          <p>&copy; 2024 Daily Inspiration. All rights reserved. Spread positivity.</p>
+          <p>&copy; 2024 Inspiration of the Day. All rights reserved. Spread positivity.</p>
         </div>
       </div>
     </footer>

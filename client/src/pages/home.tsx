@@ -23,7 +23,7 @@ export default function Home() {
     
     if (navigator.share) {
       navigator.share({
-        title: 'Daily Inspiration',
+        title: 'Inspiration of the Day',
         text: shareText,
         url: window.location.href
       });
