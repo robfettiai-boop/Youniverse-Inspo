@@ -17,15 +17,9 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
           <div className="h-6 bg-gray-200 rounded w-48 mx-auto"></div>
         </div>
       ) : quote ? (
-        <>
-          <blockquote className="text-2xl md:text-3xl lg:text-4xl font-light text-black leading-relaxed mb-8">
-            {quote.text}
-          </blockquote>
-          
-          <footer className="text-lg md:text-xl text-gray-600 mb-12">
-            — {quote.author}
-          </footer>
-        </>
+        <blockquote className="text-2xl md:text-3xl lg:text-4xl font-light text-black leading-relaxed mb-12">
+          {quote.text}
+        </blockquote>
       ) : (
         <div className="text-xl text-gray-600">
           Failed to load quote. Please try again.
