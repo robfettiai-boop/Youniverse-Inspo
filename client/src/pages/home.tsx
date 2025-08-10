@@ -88,7 +88,7 @@ export default function Home() {
         <img 
           src={brandLogo} 
           alt="LearnYourself.jp" 
-          className="h-12 w-auto opacity-85 hover:opacity-100 transition-opacity duration-300"
+          className="h-16 w-auto opacity-90 hover:opacity-100 transition-opacity duration-300"
         />
       </div>
       
