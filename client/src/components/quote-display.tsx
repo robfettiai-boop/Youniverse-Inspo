@@ -34,7 +34,7 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
           disabled={isLoading}
           style={{ fontWeight: '500', transform: 'translateY(6px)' }}
         >
-          <span className="leading-none flex items-center justify-center font-medium" style={{ fontWeight: '500' }}>
+          <span className="leading-none flex items-center justify-center font-light" style={{ fontWeight: '300', fontFamily: 'serif' }}>
             {isLoading ? '⟲' : '∞'}
           </span>
         </button>
