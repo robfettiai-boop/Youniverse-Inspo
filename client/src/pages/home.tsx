@@ -104,7 +104,7 @@ export default function Home() {
           <Instagram size={24} />
         </a>
         <a 
-          href="https://spotify.com" 
+          href="https://open.spotify.com/playlist/7FrD5azbIj9oWZwZRAjlGc?si=RapRMiqiTCGqbJHC_sHBCw&pi=MNF2FYS6QeqYl" 
           target="_blank" 
           rel="noopener noreferrer"
           className="text-gray-600 hover:text-green-500 transition-colors duration-300"
