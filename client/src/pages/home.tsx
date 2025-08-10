@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import type { Quote } from "@shared/schema";
 import QuoteDisplay from "@/components/quote-display";
+import brandLogo from "@assets/b3eaf067-b59f-496e-9dd8-99bfa0cc88e0_1754836286091.png";
 
 export default function Home() {
   const { data: quote, isLoading, refetch } = useQuery<Quote>({
@@ -81,7 +82,16 @@ export default function Home() {
   };
 
   return (
-    <div className="font-vogue bg-white min-h-screen flex items-center justify-center px-4">
+    <div className="font-vogue bg-white min-h-screen flex flex-col items-center justify-center px-4">
+      {/* Brand Logo */}
+      <div className="absolute top-8 left-1/2 transform -translate-x-1/2">
+        <img 
+          src={brandLogo} 
+          alt="LearnYourself.jp" 
+          className="h-8 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300"
+        />
+      </div>
+      
       <div className="max-w-4xl mx-auto text-center">
         <QuoteDisplay 
           quote={quote} 
