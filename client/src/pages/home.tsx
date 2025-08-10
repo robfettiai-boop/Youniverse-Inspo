@@ -84,11 +84,11 @@ export default function Home() {
   return (
     <div className="font-vogue bg-white min-h-screen flex flex-col items-center justify-center px-4">
       {/* Brand Logo */}
-      <div className="absolute top-8 left-1/2 transform -translate-x-1/2">
+      <div className="absolute top-6 left-1/2 transform -translate-x-1/2">
         <img 
           src={brandLogo} 
           alt="LearnYourself.jp" 
-          className="h-8 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300"
+          className="h-12 w-auto opacity-85 hover:opacity-100 transition-opacity duration-300"
         />
       </div>
       
