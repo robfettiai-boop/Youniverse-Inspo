@@ -85,7 +85,7 @@ export default function Home() {
   return (
     <div className="font-vogue bg-white min-h-screen flex flex-col items-center justify-center px-4">
       {/* Brand Logo */}
-      <div className="absolute top-1 left-1/2 transform -translate-x-1/2">
+      <div className="absolute top-0 left-1/2 transform -translate-x-1/2">
         <img 
           src={brandLogo} 
           alt="LearnYourself.jp" 
