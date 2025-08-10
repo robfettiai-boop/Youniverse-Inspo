@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import type { Quote } from "@shared/schema";
 import QuoteDisplay from "@/components/quote-display";
 import brandLogo from "@assets/b3eaf067-b59f-496e-9dd8-99bfa0cc88e0_1754836286091.png";
+import { Instagram, Music } from "lucide-react";
 
 export default function Home() {
   const { data: quote, isLoading, refetch } = useQuery<Quote>({
@@ -90,6 +91,26 @@ export default function Home() {
           alt="LearnYourself.jp" 
           className="h-32 w-auto opacity-95 hover:opacity-100 transition-opacity duration-300"
         />
+      </div>
+
+      {/* Social Icons */}
+      <div className="absolute top-36 left-1/2 transform -translate-x-1/2 flex gap-6">
+        <a 
+          href="https://instagram.com" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-gray-600 hover:text-pink-500 transition-colors duration-300"
+        >
+          <Instagram size={24} />
+        </a>
+        <a 
+          href="https://spotify.com" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-gray-600 hover:text-green-500 transition-colors duration-300"
+        >
+          <Music size={24} />
+        </a>
       </div>
       
       <div className="max-w-4xl mx-auto text-center">
