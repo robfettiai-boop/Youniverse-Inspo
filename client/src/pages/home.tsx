@@ -96,7 +96,7 @@ export default function Home() {
       {/* Social Icons */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-6">
         <a 
-          href="https://instagram.com" 
+          href="https://www.instagram.com/learnyourself.jp/" 
           target="_blank" 
           rel="noopener noreferrer"
           className="text-gray-600 hover:text-pink-500 transition-colors duration-300"
