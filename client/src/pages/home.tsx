@@ -4,6 +4,7 @@ import QuoteDisplay from "@/components/quote-display";
 import PopulationMeter from "@/components/population-meter";
 import brandLogo from "@assets/b3eaf067-b59f-496e-9dd8-99bfa0cc88e0_1754836286091.png";
 import { Instagram, Music } from "lucide-react";
+import { makeLettersColored } from "@/utils/redR";
 
 export default function Home() {
   const { data: quote, isLoading, refetch } = useQuery<Quote>({
@@ -100,7 +101,7 @@ export default function Home() {
       </div>
 
       {/* Social Icons */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-6">
+      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex gap-6">
         <a 
           href="https://www.instagram.com/learnyourself.jp/" 
           target="_blank" 
@@ -117,6 +118,13 @@ export default function Home() {
         >
           <Music size={24} />
         </a>
+      </div>
+
+      {/* Slogan at very bottom */}
+      <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2">
+        <p className="text-sm text-gray-500 font-light tracking-wide">
+          {makeLettersColored("Change begins NOW..")}
+        </p>
       </div>
       
       <div className="max-w-4xl mx-auto text-center">
