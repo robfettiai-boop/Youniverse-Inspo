@@ -81,23 +81,11 @@ export default function PopulationMeter() {
     <div className="text-xs text-gray-500 space-y-1 text-center">
       <div className="flex items-center justify-center gap-4">
         <div className="transition-all duration-300">
-          <span className="text-green-600 animate-pulse">↑ </span>
           <span className="font-mono">{makeLettersColored(`Births today: ${displayBirths}`)}</span>
         </div>
         <div className="transition-all duration-300">
-          <span className="text-red-400 animate-pulse">↓ </span>
           <span className="font-mono">{makeLettersColored(`Deaths today: ${displayDeaths}`)}</span>
         </div>
-      </div>
-      <div className="text-xs text-gray-400">
-        <a 
-          href="https://www.worldometers.info/world-population/" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="hover:text-blue-500 transition-colors duration-300"
-        >
-          {makeLettersColored('Live from Worldometers')}
-        </a>
       </div>
     </div>
   );
