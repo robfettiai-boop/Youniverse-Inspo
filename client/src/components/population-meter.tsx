@@ -126,10 +126,10 @@ export default function PopulationMeter() {
         </div>
       </div>
       
-      {/* Show regional information */}
-      {data?.region && data.region !== 'Global' && (
+      {/* Show timezone info */}
+      {data?.region && (
         <div className="text-xs text-gray-400 mt-1">
-          {makeLettersColored(`${data.region} • Local Time`)}
+          {makeLettersColored(`${data.region} • Your Local Time`)}
         </div>
       )}
       

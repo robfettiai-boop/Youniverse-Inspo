@@ -76,35 +76,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
         }
       }
 
-      // Fallback: Generate realistic regional data based on timezone and region
-      const regionalData = calculateRegionalPopulationData(timezone, region);
+      // Generate global numbers but calculated based on user's local timezone
+      const globalData = calculateGlobalPopulationForTimezone(timezone);
       
-      console.log('Generated regional population data:', regionalData);
+      console.log('Generated global population data for timezone:', timezone, globalData);
       
       res.json({
-        birthsToday: regionalData.births.toLocaleString(),
-        deathsToday: regionalData.deaths.toLocaleString(),
+        birthsToday: globalData.births.toLocaleString(),
+        deathsToday: globalData.deaths.toLocaleString(),
         timestamp: new Date().toISOString(),
-        source: 'regional-estimate',
-        region: regionalData.regionName,
-        timezone: timezone
+        source: 'global-timezone-estimate',
+        region: 'World',
+        timezone: timezone,
+        localTime: globalData.localTime
       });
     } catch (error) {
       console.error('Error fetching population data:', error);
       
-      // Emergency fallback
-      const fallbackData = calculateRegionalPopulationData(
-        req.query.timezone as string || 'UTC',
-        req.query.region as string || 'global'
+      // Emergency fallback - still use global numbers based on timezone
+      const fallbackData = calculateGlobalPopulationForTimezone(
+        req.query.timezone as string || 'UTC'
       );
       
       res.json({
         birthsToday: fallbackData.births.toLocaleString(),
         deathsToday: fallbackData.deaths.toLocaleString(),
         timestamp: new Date().toISOString(),
-        source: 'fallback-regional',
-        region: fallbackData.regionName,
-        timezone: req.query.timezone as string || 'UTC'
+        source: 'fallback-global-timezone',
+        region: 'World',
+        timezone: fallbackData.timezone
       });
     }
   });
@@ -206,6 +206,40 @@ export async function registerRoutes(app: Express): Promise<Server> {
       regionName,
       detectedRegion,
       localTime: localTime.toISOString()
+    };
+  }
+
+  // Helper function to calculate global population data based on user's timezone  
+  function calculateGlobalPopulationForTimezone(timezone: string) {
+    // Calculate time in specified timezone
+    const now = new Date();
+    let localTime: Date;
+    
+    try {
+      // Create date in specified timezone
+      localTime = new Date(now.toLocaleString("en-US", {timeZone: timezone}));
+    } catch {
+      localTime = now; // Fallback to UTC if timezone is invalid
+    }
+    
+    const startOfDay = new Date(localTime.getFullYear(), localTime.getMonth(), localTime.getDate());
+    const secondsElapsedToday = Math.floor((localTime.getTime() - startOfDay.getTime()) / 1000);
+    
+    // Global numbers (full world population)
+    const baseBirths = 385000; // Global births per day
+    const baseDeaths = 165000;  // Global deaths per day
+    
+    // Calculate progress through the user's local day with some randomness
+    const births = Math.floor(baseBirths * (secondsElapsedToday / 86400)) + 
+                   Math.floor(Math.random() * 1000);
+    const deaths = Math.floor(baseDeaths * (secondsElapsedToday / 86400)) + 
+                   Math.floor(Math.random() * 500);
+    
+    return {
+      births,
+      deaths,
+      localTime: localTime.toISOString(),
+      timezone: timezone
     };
   }
 
