@@ -95,8 +95,8 @@ export default function Home() {
         />
       </div>
 
-      {/* Social Icons */}
-      <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 flex gap-6">
+      {/* Social Icons - moved to top right */}
+      <div className="absolute top-4 right-4 flex gap-4">
         <a 
           href="https://www.instagram.com/learnyourself.jp/" 
           target="_blank" 
