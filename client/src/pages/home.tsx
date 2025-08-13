@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import type { Quote } from "@shared/schema";
 import QuoteDisplay from "@/components/quote-display";
-import PopulationMeter from "@/components/population-meter";
 import brandLogo from "@assets/b3eaf067-b59f-496e-9dd8-99bfa0cc88e0_1754836286091.png";
 import { Instagram, Music } from "lucide-react";
 import { makeLettersColored } from "@/utils/redR";
@@ -95,13 +94,8 @@ export default function Home() {
         />
       </div>
 
-      {/* Population Meter */}
-      <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2">
-        <PopulationMeter />
-      </div>
-
-      {/* Social Icons */}
-      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex gap-6">
+      {/* Social Icons - moved to replace population meter */}
+      <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 flex gap-6">
         <a 
           href="https://www.instagram.com/learnyourself.jp/" 
           target="_blank" 
