@@ -122,7 +122,7 @@ export default function Home() {
 
       {/* Slogan at very bottom */}
       <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2">
-        <p className="text-sm text-gray-500 font-light tracking-wide">
+        <p className="text-lg text-gray-600 font-medium tracking-wide">
           {makeLettersColored("Change begins NOW..")}
         </p>
       </div>
