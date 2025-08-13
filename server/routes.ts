@@ -38,6 +38,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get population data from Worldometers
+  app.get("/api/population", async (_req, res) => {
+    try {
+      const response = await fetch('https://www.worldometers.info/world-population/');
+      const html = await response.text();
+      
+      // Extract births and deaths today using regex
+      const birthsMatch = html.match(/Births today\s*<\/div>\s*<div[^>]*>\s*([0-9,]+)/i);
+      const deathsMatch = html.match(/Deaths today\s*<\/div>\s*<div[^>]*>\s*([0-9,]+)/i);
+      
+      const birthsToday = birthsMatch ? birthsMatch[1] : 'N/A';
+      const deathsToday = deathsMatch ? deathsMatch[1] : 'N/A';
+      
+      res.json({
+        birthsToday,
+        deathsToday
+      });
+    } catch (error) {
+      console.error('Error fetching population data:', error);
+      res.status(500).json({ error: 'Failed to fetch population data' });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import type { Quote } from "@shared/schema";
 import QuoteDisplay from "@/components/quote-display";
+import PopulationMeter from "@/components/population-meter";
 import brandLogo from "@assets/b3eaf067-b59f-496e-9dd8-99bfa0cc88e0_1754836286091.png";
 import { Instagram, Music } from "lucide-react";
 
@@ -91,6 +92,11 @@ export default function Home() {
           alt="LearnYourself.jp" 
           className="h-32 w-auto opacity-95 hover:opacity-100 transition-opacity duration-300"
         />
+      </div>
+
+      {/* Population Meter */}
+      <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2">
+        <PopulationMeter />
       </div>
 
       {/* Social Icons */}
