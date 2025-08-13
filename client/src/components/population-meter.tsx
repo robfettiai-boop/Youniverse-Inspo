@@ -116,20 +116,18 @@ export default function PopulationMeter() {
   const displayDeaths = data?.deathsToday || 'Loading...';
 
   return (
-    <div className="text-xs text-gray-500 space-y-1 text-center">
-      <div className="flex items-center justify-center gap-4">
+    <div className="text-gray-600 space-y-3 text-center">
+      <div className="flex items-center justify-center gap-6">
         <div className="transition-all duration-300">
-          <span className="font-mono">{makeLettersColored(`Births today: ${displayBirths}`)}</span>
+          <span className="font-mono text-lg font-medium">{makeLettersColored(`Births today: ${displayBirths}`)}</span>
         </div>
         <div className="transition-all duration-300">
-          <span className="font-mono">{makeLettersColored(`Deaths today: ${displayDeaths}`)}</span>
+          <span className="font-mono text-lg font-medium">{makeLettersColored(`Deaths today: ${displayDeaths}`)}</span>
         </div>
       </div>
       
-
-      
       {data?.source && (
-        <div className="text-xs text-gray-400 mt-1">
+        <div className="text-xs text-gray-400 mt-2">
           {makeLettersColored(`Updated: ${lastUpdate.toLocaleTimeString()}`)}
         </div>
       )}
