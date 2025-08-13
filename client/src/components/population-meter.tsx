@@ -17,8 +17,8 @@ export default function PopulationMeter() {
     // Initial fetch
     fetchPopulationData();
     
-    // Fetch fresh data every 30 seconds to sync with real-time changes
-    const dataInterval = setInterval(fetchPopulationData, 30 * 1000);
+    // Fetch fresh data every 10 seconds to show more frequent updates
+    const dataInterval = setInterval(fetchPopulationData, 10 * 1000);
     
     return () => {
       clearInterval(dataInterval);
