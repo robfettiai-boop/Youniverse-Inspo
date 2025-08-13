@@ -41,15 +41,37 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Get population data from Worldometers
   app.get("/api/population", async (_req, res) => {
     try {
-      const response = await fetch('https://www.worldometers.info/world-population/');
+      const response = await fetch('https://www.worldometers.info/world-population/', {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+        }
+      });
       const html = await response.text();
       
-      // Extract births and deaths today using regex
-      const birthsMatch = html.match(/Births today\s*<\/div>\s*<div[^>]*>\s*([0-9,]+)/i);
-      const deathsMatch = html.match(/Deaths today\s*<\/div>\s*<div[^>]*>\s*([0-9,]+)/i);
+      // Try multiple patterns to extract births and deaths today
+      let birthsToday = 'N/A';
+      let deathsToday = 'N/A';
       
-      const birthsToday = birthsMatch ? birthsMatch[1] : 'N/A';
-      const deathsToday = deathsMatch ? deathsMatch[1] : 'N/A';
+      // Pattern 1: Look for the exact structure from the website
+      const birthsMatch1 = html.match(/Births today[\s\S]*?<div[^>]*>[\s]*([0-9,]+)/i);
+      const deathsMatch1 = html.match(/Deaths today[\s\S]*?<div[^>]*>[\s]*([0-9,]+)/i);
+      
+      // Pattern 2: Alternative structure
+      const birthsMatch2 = html.match(/births.*today.*?([0-9,]+)/i);
+      const deathsMatch2 = html.match(/deaths.*today.*?([0-9,]+)/i);
+      
+      // Pattern 3: Look in script tags for dynamic content
+      const scriptMatch = html.match(/<script[^>]*>[\s\S]*births.*?([0-9,]+)[\s\S]*deaths.*?([0-9,]+)[\s\S]*<\/script>/i);
+      
+      if (birthsMatch1) birthsToday = birthsMatch1[1];
+      else if (birthsMatch2) birthsToday = birthsMatch2[1];
+      else if (scriptMatch) birthsToday = scriptMatch[1];
+      
+      if (deathsMatch1) deathsToday = deathsMatch1[1];
+      else if (deathsMatch2) deathsToday = deathsMatch2[1];
+      else if (scriptMatch && scriptMatch[2]) deathsToday = scriptMatch[2];
+      
+      console.log('Population data extracted:', { birthsToday, deathsToday });
       
       res.json({
         birthsToday,

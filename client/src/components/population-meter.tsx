@@ -51,11 +51,11 @@ export default function PopulationMeter() {
       <div className="flex items-center justify-center gap-4">
         <div>
           <span className="text-green-600">↑ </span>
-          <span>{makeLettersColored(`Born today: ${data.birthsToday}`)}</span>
+          <span>{makeLettersColored(`Births today: ${data.birthsToday}`)}</span>
         </div>
         <div>
           <span className="text-red-400">↓ </span>
-          <span>{makeLettersColored(`Died today: ${data.deathsToday}`)}</span>
+          <span>{makeLettersColored(`Deaths today: ${data.deathsToday}`)}</span>
         </div>
       </div>
       <div className="text-xs text-gray-400">
