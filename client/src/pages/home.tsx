@@ -85,17 +85,8 @@ export default function Home() {
   };
 
   return (
-    <div className="font-vogue bg-white min-h-screen flex flex-col items-center justify-center px-4">
-      {/* Brand Logo */}
-      <div className="absolute top-0 left-1/2 transform -translate-x-1/2">
-        <img 
-          src={brandLogo} 
-          alt="LearnYourself.jp" 
-          className="h-32 w-auto opacity-95 hover:opacity-100 transition-opacity duration-300"
-        />
-      </div>
-
-      {/* Social Icons - moved to top right */}
+    <div className="font-vogue bg-white min-h-screen flex flex-col items-center justify-center px-4 relative">
+      {/* Social Icons - stay in top right corner */}
       <div className="absolute top-4 right-4 flex gap-4">
         <a 
           href="https://www.instagram.com/learnyourself.jp/" 
@@ -115,25 +106,38 @@ export default function Home() {
         </a>
       </div>
 
-      {/* Population Meter - positioned between social icons and slogan */}
-      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2">
-        <PopulationMeter />
-      </div>
+      {/* Main centered content column */}
+      <div className="flex flex-col items-center justify-center space-y-16 max-w-4xl w-full">
+        {/* Brand Logo */}
+        <div className="flex justify-center">
+          <img 
+            src={brandLogo} 
+            alt="LearnYourself.jp" 
+            className="h-32 w-auto opacity-95 hover:opacity-100 transition-opacity duration-300"
+          />
+        </div>
 
-      {/* Slogan at very bottom */}
-      <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2">
-        <p className="text-lg text-gray-600 font-medium tracking-wide">
-          {makeLettersColored("Change begins NOW..")}
-        </p>
-      </div>
-      
-      <div className="max-w-4xl mx-auto text-center">
-        <QuoteDisplay 
-          quote={quote} 
-          isLoading={isLoading}
-          onNewQuote={handleNewQuote}
-          onShare={handleShare}
-        />
+        {/* Quote Display - centered */}
+        <div className="text-center w-full">
+          <QuoteDisplay 
+            quote={quote} 
+            isLoading={isLoading}
+            onNewQuote={handleNewQuote}
+            onShare={handleShare}
+          />
+        </div>
+
+        {/* Population Meter - centered */}
+        <div className="flex justify-center">
+          <PopulationMeter />
+        </div>
+
+        {/* Slogan - centered */}
+        <div className="flex justify-center">
+          <p className="text-lg text-gray-600 font-medium tracking-wide">
+            {makeLettersColored("Change begins NOW..")}
+          </p>
+        </div>
       </div>
     </div>
   );
