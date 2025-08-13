@@ -38,10 +38,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get population data from Worldometers using alternative approach
-  app.get("/api/population", async (_req, res) => {
+  // Get population data with regional/timezone customization
+  app.get("/api/population", async (req, res) => {
     try {
-      // Try RapidAPI Worldometers endpoint first
+      // Get timezone from query parameter (sent by frontend)
+      const timezone = req.query.timezone as string || 'UTC';
+      const region = req.query.region as string || 'global';
+      
+      console.log('Population request:', { timezone, region });
+
+      // Try RapidAPI Worldometers endpoint first for global data
       const rapidApiResponse = await fetch('https://worldometers.p.rapidapi.com/population', {
         headers: {
           'X-RapidAPI-Key': process.env.RAPIDAPI_KEY || 'demo-key',
@@ -54,56 +60,154 @@ export async function registerRoutes(app: Express): Promise<Server> {
         console.log('RapidAPI response:', apiData);
         
         if (apiData && (apiData.births_today || apiData.deaths_today)) {
+          // Apply regional scaling if not global
+          const scaleFactor = getRegionalScaleFactor(region);
+          const birthsToday = Math.floor(parseInt(apiData.births_today || '0') * scaleFactor);
+          const deathsToday = Math.floor(parseInt(apiData.deaths_today || '0') * scaleFactor);
+          
           return res.json({
-            birthsToday: apiData.births_today?.toString() || 'N/A',
-            deathsToday: apiData.deaths_today?.toString() || 'N/A',
+            birthsToday: birthsToday.toLocaleString(),
+            deathsToday: deathsToday.toLocaleString(),
             timestamp: new Date().toISOString(),
-            source: 'rapidapi-worldometers'
+            source: 'rapidapi-worldometers',
+            region: region,
+            timezone: timezone
           });
         }
       }
 
-      // Fallback: Generate realistic simulated data based on actual rates
-      // Global birth rate: ~4.3/second, death rate: ~2/second (approximately)
-      const now = new Date();
-      const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-      const secondsElapsedToday = Math.floor((now.getTime() - startOfDay.getTime()) / 1000);
+      // Fallback: Generate realistic regional data based on timezone and region
+      const regionalData = calculateRegionalPopulationData(timezone, region);
       
-      // Base numbers (approximate daily totals) + elapsed progress
-      const baseBirths = 385000; // Approximate births per day globally
-      const baseDeaths = 165000;  // Approximate deaths per day globally
-      
-      // Calculate progress through the day
-      const birthsToday = Math.floor(baseBirths * (secondsElapsedToday / 86400)) + Math.floor(Math.random() * 1000);
-      const deathsToday = Math.floor(baseDeaths * (secondsElapsedToday / 86400)) + Math.floor(Math.random() * 500);
-      
-      console.log('Generated realistic population data:', { birthsToday, deathsToday });
+      console.log('Generated regional population data:', regionalData);
       
       res.json({
-        birthsToday: birthsToday.toLocaleString(),
-        deathsToday: deathsToday.toLocaleString(),
+        birthsToday: regionalData.births.toLocaleString(),
+        deathsToday: regionalData.deaths.toLocaleString(),
         timestamp: new Date().toISOString(),
-        source: 'calculated-estimate'
+        source: 'regional-estimate',
+        region: regionalData.regionName,
+        timezone: timezone
       });
     } catch (error) {
       console.error('Error fetching population data:', error);
       
-      // Emergency fallback with realistic numbers
-      const now = new Date();
-      const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-      const secondsElapsedToday = Math.floor((now.getTime() - startOfDay.getTime()) / 1000);
-      
-      const birthsToday = Math.floor(385000 * (secondsElapsedToday / 86400));
-      const deathsToday = Math.floor(165000 * (secondsElapsedToday / 86400));
+      // Emergency fallback
+      const fallbackData = calculateRegionalPopulationData(
+        req.query.timezone as string || 'UTC',
+        req.query.region as string || 'global'
+      );
       
       res.json({
-        birthsToday: birthsToday.toLocaleString(),
-        deathsToday: deathsToday.toLocaleString(),
+        birthsToday: fallbackData.births.toLocaleString(),
+        deathsToday: fallbackData.deaths.toLocaleString(),
         timestamp: new Date().toISOString(),
-        source: 'fallback-estimate'
+        source: 'fallback-regional',
+        region: fallbackData.regionName,
+        timezone: req.query.timezone as string || 'UTC'
       });
     }
   });
+
+  // Helper function to get regional population scaling factors
+  function getRegionalScaleFactor(region: string): number {
+    const scalingFactors: Record<string, number> = {
+      'global': 1.0,
+      'asia': 0.59,      // ~59% of world population
+      'africa': 0.17,    // ~17% of world population  
+      'europe': 0.10,    // ~10% of world population
+      'north-america': 0.08, // ~8% of world population
+      'south-america': 0.05, // ~5% of world population
+      'oceania': 0.01,   // ~1% of world population
+      'china': 0.18,     // ~18% of world population
+      'india': 0.17,     // ~17% of world population
+      'usa': 0.04,       // ~4% of world population
+      'japan': 0.016,    // ~1.6% of world population
+      'uk': 0.009,       // ~0.9% of world population
+      'germany': 0.01,   // ~1% of world population
+    };
+    
+    return scalingFactors[region.toLowerCase()] || 1.0;
+  }
+
+  // Helper function to calculate regional population data based on timezone
+  function calculateRegionalPopulationData(timezone: string, region: string) {
+    // Determine region from timezone if not specified
+    let detectedRegion = region;
+    let regionName = 'Global';
+    
+    if (region === 'global' || !region) {
+      // Auto-detect region from timezone
+      if (timezone.includes('America') || timezone.includes('US') || timezone.includes('Canada')) {
+        detectedRegion = 'north-america';
+        regionName = 'North America';
+      } else if (timezone.includes('Europe') || timezone.includes('London') || timezone.includes('Berlin')) {
+        detectedRegion = 'europe';
+        regionName = 'Europe';
+      } else if (timezone.includes('Asia') || timezone.includes('Tokyo') || timezone.includes('Shanghai')) {
+        detectedRegion = 'asia';
+        regionName = 'Asia';
+      } else if (timezone.includes('Africa')) {
+        detectedRegion = 'africa';
+        regionName = 'Africa';
+      } else if (timezone.includes('Australia') || timezone.includes('Pacific')) {
+        detectedRegion = 'oceania';
+        regionName = 'Oceania';
+      }
+    } else {
+      // Use specified region
+      const regionNames: Record<string, string> = {
+        'asia': 'Asia',
+        'africa': 'Africa',
+        'europe': 'Europe',
+        'north-america': 'North America',
+        'south-america': 'South America',
+        'oceania': 'Oceania',
+        'china': 'China',
+        'india': 'India',
+        'usa': 'United States',
+        'japan': 'Japan',
+        'uk': 'United Kingdom',
+        'germany': 'Germany'
+      };
+      regionName = regionNames[region.toLowerCase()] || 'Global';
+    }
+
+    // Calculate time in specified timezone
+    const now = new Date();
+    let localTime: Date;
+    
+    try {
+      // Create date in specified timezone
+      localTime = new Date(now.toLocaleString("en-US", {timeZone: timezone}));
+    } catch {
+      localTime = now; // Fallback to UTC if timezone is invalid
+    }
+    
+    const startOfDay = new Date(localTime.getFullYear(), localTime.getMonth(), localTime.getDate());
+    const secondsElapsedToday = Math.floor((localTime.getTime() - startOfDay.getTime()) / 1000);
+    
+    // Get regional scaling factor
+    const scaleFactor = getRegionalScaleFactor(detectedRegion);
+    
+    // Base global numbers scaled by region
+    const baseBirths = Math.floor(385000 * scaleFactor); // Daily births for region
+    const baseDeaths = Math.floor(165000 * scaleFactor); // Daily deaths for region
+    
+    // Calculate progress through the local day with some randomness
+    const births = Math.floor(baseBirths * (secondsElapsedToday / 86400)) + 
+                   Math.floor(Math.random() * Math.max(10, baseBirths * 0.01));
+    const deaths = Math.floor(baseDeaths * (secondsElapsedToday / 86400)) + 
+                   Math.floor(Math.random() * Math.max(5, baseDeaths * 0.01));
+    
+    return {
+      births,
+      deaths,
+      regionName,
+      detectedRegion,
+      localTime: localTime.toISOString()
+    };
+  }
 
   const httpServer = createServer(app);
   return httpServer;
