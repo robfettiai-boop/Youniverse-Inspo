@@ -127,8 +127,8 @@ export default function Home() {
           />
         </div>
 
-        {/* Population Meter - centered */}
-        <div className="flex justify-center">
+        {/* Population Meter - centered with extra bottom spacing */}
+        <div className="flex justify-center mb-8">
           <PopulationMeter />
         </div>
 
