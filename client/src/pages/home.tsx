@@ -135,7 +135,7 @@ export default function Home() {
         {/* Slogan - centered */}
         <div className="flex justify-center">
           <p className="text-lg text-gray-600 font-medium tracking-wide">
-            {makeLettersColored("Change begins NOW")}
+            {makeLettersColored("Take nothing for granted..")}
           </p>
         </div>
       </div>
