@@ -29,41 +29,42 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
       )}
 
       <div className="flex flex-row gap-8 justify-center items-center">
-        <button 
-          className="group transform hover:scale-110 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center px-6 py-3 h-12 w-20"
-          onClick={onNewQuote}
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <span className="text-2xl flex items-center justify-center" style={{ color: '#132448' }}>⟲</span>
-          ) : (
-            <img 
-              src={infinityImage} 
-              alt="Infinity symbol" 
-              className="w-8 h-8 object-contain"
-            />
-          )}
-        </button>
+        <div className="flex items-center justify-center w-20 h-12">
+          <button 
+            className="group transform hover:scale-110 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center w-full h-full"
+            onClick={onNewQuote}
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <span className="text-2xl" style={{ color: '#132448' }}>⟲</span>
+            ) : (
+              <img 
+                src={infinityImage} 
+                alt="Infinity symbol" 
+                className="w-8 h-8 object-contain"
+              />
+            )}
+          </button>
+        </div>
         
-        <button 
-          className="transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed h-12 w-20 flex items-center justify-center px-6 py-3"
-          style={{ 
-            color: '#132448',
-            lineHeight: '1',
-            alignItems: 'center',
-            display: 'flex'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.color = '#0f1a35';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.color = '#132448';
-          }}
-          onClick={onShare}
-          disabled={!quote}
-        >
-          <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>Share</span>
-        </button>
+        <div className="flex items-center justify-center w-20 h-12">
+          <button 
+            className="transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center w-full h-full"
+            style={{ 
+              color: '#132448'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = '#0f1a35';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = '#132448';
+            }}
+            onClick={onShare}
+            disabled={!quote}
+          >
+            Share
+          </button>
+        </div>
       </div>
     </div>
   );
