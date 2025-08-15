@@ -229,7 +229,8 @@ export default function Home() {
           href="https://www.instagram.com/robfettuccino?igsh=NGgxaTFmc3ZweWVp" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="text-gray-600 hover:text-pink-500 transition-colors duration-300"
+          className="hover:text-pink-500 transition-colors duration-300"
+          style={{ color: '#132448' }}
         >
           <Instagram size={24} />
         </a>
@@ -237,7 +238,8 @@ export default function Home() {
           href="https://open.spotify.com/playlist/7FrD5azbIj9oWZwZRAjlGc?si=RapRMiqiTCGqbJHC_sHBCw&pi=MNF2FYS6QeqYl" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="text-gray-600 hover:text-green-500 transition-colors duration-300"
+          className="hover:text-green-500 transition-colors duration-300"
+          style={{ color: '#132448' }}
         >
           <Music size={24} />
         </a>
@@ -271,7 +273,7 @@ export default function Home() {
 
         {/* Slogan - centered */}
         <div className="flex justify-center">
-          <p className="text-lg text-gray-600 font-medium tracking-wide">
+          <p className="text-lg font-medium tracking-wide" style={{ color: '#132448' }}>
             Take nothing for granted..
           </p>
         </div>

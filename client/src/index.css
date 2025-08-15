@@ -7,17 +7,17 @@
 
 :root {
   --background: hsl(0, 0%, 100%);
-  --foreground: hsl(210, 25%, 7.8431%);
+  --foreground: #132448;
   --card: hsl(180, 6.6667%, 97.0588%);
-  --card-foreground: hsl(210, 25%, 7.8431%);
+  --card-foreground: #132448;
   --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(210, 25%, 7.8431%);
+  --popover-foreground: #132448;
   --primary: hsl(203.8863, 88.2845%, 53.1373%);
   --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(210, 25%, 7.8431%);
+  --secondary: #132448;
   --secondary-foreground: hsl(0, 0%, 100%);
   --muted: hsl(240, 1.9608%, 90%);
-  --muted-foreground: hsl(210, 25%, 7.8431%);
+  --muted-foreground: #132448;
   --accent: hsl(211.5789, 51.3514%, 92.7451%);
   --accent-foreground: hsl(203.8863, 88.2845%, 53.1373%);
   --destructive: hsl(356.3033, 90.5579%, 54.3137%);
@@ -31,7 +31,7 @@
   --chart-4: hsl(147.1429, 78.5047%, 41.9608%);
   --chart-5: hsl(341.4894, 75.2000%, 50.9804%);
   --sidebar: hsl(180, 6.6667%, 97.0588%);
-  --sidebar-foreground: hsl(210, 25%, 7.8431%);
+  --sidebar-foreground: #132448;
   --sidebar-primary: hsl(203.8863, 88.2845%, 53.1373%);
   --sidebar-primary-foreground: hsl(0, 0%, 100%);
   --sidebar-accent: hsl(211.5789, 51.3514%, 92.7451%);
@@ -56,8 +56,9 @@
   /* Custom theme colors from design */
   --brand-purple: hsl(243, 75%, 70%);
   --brand-purple-dark: hsl(267, 57%, 58%);
-  --text-primary: hsl(214, 20%, 25%);
-  --text-muted: hsl(214, 15%, 51%);
+  --text-primary: #132448;
+  --text-muted: #132448;
+  --yankees-navy: #132448;
   --font-sans: 'Vogue', 'Inter', system-ui, sans-serif;
   --font-serif: 'Vogue', Georgia, serif;
   --font-mono: 'Vogue', Menlo, monospace;

@@ -23,7 +23,7 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
           {makeLettersColored(quote.text)}
         </blockquote>
       ) : (
-        <div className="text-xl text-gray-600">
+        <div className="text-xl" style={{ color: '#132448' }}>
           Failed to load quote. Please try again.
         </div>
       )}
@@ -35,7 +35,7 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
           disabled={isLoading}
         >
           {isLoading ? (
-            <span className="text-purple-900 text-2xl">⟲</span>
+            <span className="text-2xl" style={{ color: '#132448' }}>⟲</span>
           ) : (
             <img 
               src={infinityImage} 
@@ -46,7 +46,19 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
         </button>
         
         <button 
-          className="px-6 py-3 text-gray-600 border border-gray-300 hover:border-black hover:text-black transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed h-12 flex items-center"
+          className="px-6 py-3 border transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed h-12 flex items-center"
+          style={{ 
+            color: '#132448', 
+            borderColor: '#132448',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = '#0f1a35';
+            e.currentTarget.style.color = '#0f1a35';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = '#132448';
+            e.currentTarget.style.color = '#132448';
+          }}
           onClick={onShare}
           disabled={!quote}
         >

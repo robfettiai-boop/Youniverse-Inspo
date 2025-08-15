@@ -115,7 +115,7 @@ export default function PopulationMeter() {
   const displayDeaths = data?.deathsToday || 'Loading...';
 
   return (
-    <div className="text-gray-600 space-y-3 text-center">
+    <div className="space-y-3 text-center" style={{ color: '#132448' }}>
       <div className="flex items-center justify-center gap-6">
         <div className="transition-all duration-300">
           <span className="font-mono text-lg font-medium">{`Births today: ${displayBirths}`}</span>
@@ -126,7 +126,7 @@ export default function PopulationMeter() {
       </div>
       
       {data?.source && (
-        <div className="text-xs text-gray-400 mt-2">
+        <div className="text-xs mt-2" style={{ color: '#132448', opacity: 0.7 }}>
           {`Updated: ${lastUpdate.toLocaleTimeString()}`}
         </div>
       )}
