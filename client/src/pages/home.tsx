@@ -168,7 +168,7 @@ export default function Home() {
       left: 50%;
       transform: translate(-50%, -50%);
       background: white;
-      border: 1px solid #132448;
+      border: 1px solid #E4A853;
       padding: 20px;
       z-index: 1000;
       display: flex;
@@ -176,7 +176,7 @@ export default function Home() {
       gap: 15px;
       min-width: 250px;
       border-radius: 10px;
-      box-shadow: 0 5px 20px rgba(19, 36, 72, 0.3);
+      box-shadow: 0 5px 20px rgba(228, 168, 83, 0.3);
     `;
     
     const backdrop = document.createElement('div');
@@ -195,21 +195,21 @@ export default function Home() {
     instagramBtn.textContent = 'Share on Instagram';
     instagramBtn.style.cssText = `
       padding: 15px; 
-      border: 1px solid #132448; 
+      border: 1px solid #E4A853; 
       background: white; 
       cursor: pointer; 
       border-radius: 6px; 
-      color: #132448; 
+      color: #E4A853; 
       font-weight: 500;
       transition: all 0.2s ease;
     `;
     instagramBtn.onmouseenter = () => {
-      instagramBtn.style.backgroundColor = '#132448';
+      instagramBtn.style.backgroundColor = '#E4A853';
       instagramBtn.style.color = 'white';
     };
     instagramBtn.onmouseleave = () => {
       instagramBtn.style.backgroundColor = 'white';
-      instagramBtn.style.color = '#132448';
+      instagramBtn.style.color = '#E4A853';
     };
     instagramBtn.onclick = async () => {
       document.body.removeChild(backdrop);
@@ -220,21 +220,21 @@ export default function Home() {
     twitterBtn.textContent = 'Share on X';
     twitterBtn.style.cssText = `
       padding: 15px; 
-      border: 1px solid #132448; 
+      border: 1px solid #E4A853; 
       background: white; 
       cursor: pointer; 
       border-radius: 6px; 
-      color: #132448; 
+      color: #E4A853; 
       font-weight: 500;
       transition: all 0.2s ease;
     `;
     twitterBtn.onmouseenter = () => {
-      twitterBtn.style.backgroundColor = '#132448';
+      twitterBtn.style.backgroundColor = '#E4A853';
       twitterBtn.style.color = 'white';
     };
     twitterBtn.onmouseleave = () => {
       twitterBtn.style.backgroundColor = 'white';
-      twitterBtn.style.color = '#132448';
+      twitterBtn.style.color = '#E4A853';
     };
     twitterBtn.onclick = () => {
       window.open(`https://twitter.com/intent/tweet?text=${shareText}&url=${currentUrl}`, '_blank');
