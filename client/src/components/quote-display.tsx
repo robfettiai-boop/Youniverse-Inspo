@@ -46,17 +46,14 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
         </button>
         
         <button 
-          className="px-6 py-3 border transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed h-12 flex items-center"
+          className="px-6 py-3 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed h-12 flex items-center"
           style={{ 
-            color: '#132448', 
-            borderColor: '#132448',
+            color: '#132448'
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = '#0f1a35';
             e.currentTarget.style.color = '#0f1a35';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = '#132448';
             e.currentTarget.style.color = '#132448';
           }}
           onClick={onShare}
