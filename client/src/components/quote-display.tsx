@@ -30,7 +30,7 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
 
       <div className="flex flex-row gap-8 justify-center items-center">
         <button 
-          className="group transform hover:scale-110 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 inline-flex items-center justify-center px-6 py-3 h-12"
+          className="group transform hover:scale-110 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 inline-flex items-center justify-center px-6 py-3 h-12 w-20"
           onClick={onNewQuote}
           disabled={isLoading}
         >
@@ -46,7 +46,7 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
         </button>
         
         <button 
-          className="px-6 py-3 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed h-12 flex items-center"
+          className="transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed h-12 w-20 inline-flex items-center justify-center px-6 py-3"
           style={{ 
             color: '#132448'
           }}
