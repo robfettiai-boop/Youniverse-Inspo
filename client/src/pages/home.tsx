@@ -26,6 +26,18 @@ export default function Home() {
         shareMenu.style.display = 'none';
       }
 
+      // Temporarily remove R coloring from all R letters in the quote
+      const originalRElements: { element: HTMLElement; originalColor: string }[] = [];
+      const rElements = document.querySelectorAll('.wine-red-r');
+      rElements.forEach((el) => {
+        const htmlEl = el as HTMLElement;
+        originalRElements.push({ 
+          element: htmlEl, 
+          originalColor: htmlEl.style.color || window.getComputedStyle(htmlEl).color 
+        });
+        htmlEl.style.color = '#E4A853'; // Use citrine orange instead
+      });
+
       // Wait a bit for UI to settle
       await new Promise(resolve => setTimeout(resolve, 100));
 
@@ -39,6 +51,11 @@ export default function Home() {
         height: window.innerHeight,
         scrollX: 0,
         scrollY: 0
+      });
+
+      // Restore original R coloring
+      originalRElements.forEach(({ element, originalColor }) => {
+        element.style.color = originalColor;
       });
 
       // Convert to blob
