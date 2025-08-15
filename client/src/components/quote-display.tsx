@@ -49,7 +49,9 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
           className="transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed h-12 w-20 flex items-center justify-center px-6 py-3"
           style={{ 
             color: '#132448',
-            lineHeight: '1'
+            lineHeight: '1',
+            alignItems: 'center',
+            display: 'flex'
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.color = '#0f1a35';
@@ -60,7 +62,7 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
           onClick={onShare}
           disabled={!quote}
         >
-          <span className="flex items-center">Share</span>
+          <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>Share</span>
         </button>
       </div>
     </div>
