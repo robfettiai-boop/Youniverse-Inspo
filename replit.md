@@ -104,9 +104,10 @@ Button style: Stylish modern design with gradients and animations
 
 ### Latest Enhancements (August 15, 2025):
 - **Perfect Button Alignment**: Infinity symbol and Share button perfectly centered with Share positioned slightly lower
-- **Direct Instagram Sharing**: Streamlined flow - Share → Instagram → Auto-screenshot + opens Instagram app/web
-- **Platform Limitation Resolved**: Instagram Stories API restrictions handled gracefully with app/web fallbacks
-- **Orange R Letters**: Instagram screenshots show R letters in Citrine Orange instead of Ruby Red for unified theme
+- **Direct Instagram Story Access**: Share → Instagram → Auto-screenshot + opens Instagram Story creation directly
+- **Optimized Camera Deep Link**: Uses `instagram://camera` for closest access to Story posting interface
+- **Smart Fallback System**: Camera → Main app → Web fallbacks ensure reliable Instagram access
+- **Orange R Letters**: Instagram screenshots show R letters in Citrine Orange for unified Instagram branding
 - **Borderless Design**: Clean Share button without borders for minimalist aesthetic
 
 ### Technical Notes:
