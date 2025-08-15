@@ -50,7 +50,7 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
           onClick={onShare}
           disabled={!quote}
         >
-          {makeLettersColored("Share")}
+          Share
         </button>
       </div>
     </div>
