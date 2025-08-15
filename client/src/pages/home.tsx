@@ -320,8 +320,8 @@ export default function Home() {
         </div>
 
         {/* Slogan - centered */}
-        <div className="flex justify-center">
-          <p className="text-lg font-medium tracking-wide" style={{ color: '#9966CC' }}>
+        <div className="flex justify-center w-full">
+          <p className="text-lg font-medium tracking-wide text-center" style={{ color: '#9966CC' }}>
             Take nothing for granted..
           </p>
         </div>
