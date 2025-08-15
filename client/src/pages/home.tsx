@@ -321,7 +321,7 @@ export default function Home() {
 
         {/* Slogan - centered */}
         <div className="flex justify-center">
-          <p className="text-lg font-medium tracking-wide" style={{ color: '#132448' }}>
+          <p className="text-lg font-medium tracking-wide" style={{ color: '#9966CC' }}>
             Take nothing for granted..
           </p>
         </div>
