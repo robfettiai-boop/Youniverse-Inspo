@@ -252,25 +252,33 @@ export default function Home() {
           link.download = `inspiration-quote-${Date.now()}.png`;
           link.click();
 
-          // Then try to open Instagram app/web
+          // Then try to open Instagram camera or app
           setTimeout(() => {
             if (isMobile) {
-              // For mobile, try Instagram app first, then web fallback
+              // For mobile, try Instagram camera first for Story creation
               try {
-                window.location.href = 'instagram://';
+                // Try camera deep link first (most direct to story creation)
+                window.location.href = 'instagram://camera';
                 
-                // Fallback to web if app doesn't open
+                // Fallback to main app if camera doesn't work
+                setTimeout(() => {
+                  if (document.hidden === false) {
+                    window.location.href = 'instagram://';
+                  }
+                }, 1500);
+                
+                // Final fallback to web
                 setTimeout(() => {
                   if (document.hidden === false) {
                     window.open('https://www.instagram.com/', '_blank');
                   }
-                }, 2000);
+                }, 3000);
                 
               } catch (error) {
                 window.open('https://www.instagram.com/', '_blank');
               }
             } else {
-              // For desktop, open Instagram web
+              // For desktop, open Instagram web directly
               window.open('https://www.instagram.com/', '_blank');
             }
           }, 500);
