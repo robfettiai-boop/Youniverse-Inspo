@@ -19,7 +19,7 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
           <div className="h-6 bg-gray-200 rounded w-48 mx-auto"></div>
         </div>
       ) : quote ? (
-        <blockquote className="text-2xl md:text-3xl lg:text-4xl font-light text-black leading-relaxed mb-12">
+        <blockquote className="text-2xl md:text-3xl lg:text-4xl font-light leading-relaxed mb-12" style={{ color: '#132448' }}>
           {makeLettersColored(quote.text)}
         </blockquote>
       ) : (
