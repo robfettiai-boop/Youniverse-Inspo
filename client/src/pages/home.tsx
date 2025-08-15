@@ -85,9 +85,9 @@ export default function Home() {
           `;
           
           instructionDiv.innerHTML = `
-            <h3 style="margin: 0 0 15px 0; color: #E4A853; font-size: 18px;">📱 Share to Instagram Story</h3>
+            <h3 style="margin: 0 0 15px 0; color: #E4A853; font-size: 18px;">📱 Ready for Instagram Stories!</h3>
             <p style="margin: 0 0 20px 0; color: #E4A853; line-height: 1.5;">
-              Image captured! Choose how to share:
+              Screenshot captured! The Instagram Stories button will automatically open Instagram and save the image to your device.
             </p>
             <div style="display: flex; flex-direction: column; gap: 10px;">
               <button id="download-btn" style="
@@ -102,14 +102,14 @@ export default function Home() {
               ">📥 Download Image</button>
               <button id="instagram-app-btn" style="
                 padding: 12px 20px; 
-                background: #E4A853; 
+                background: #E1306C; 
                 color: white; 
                 border: none; 
                 border-radius: 8px; 
                 cursor: pointer;
                 font-weight: bold;
                 transition: all 0.2s ease;
-              ">📱 Open Instagram App</button>
+              ">📸 Share to Instagram Stories</button>
               <button id="close-instruction-btn" style="
                 padding: 8px 16px; 
                 background: transparent; 
@@ -144,12 +144,48 @@ export default function Home() {
           };
 
           document.getElementById('instagram-app-btn')!.onclick = () => {
-            // Try to open Instagram app
-            const instagramUrl = 'instagram://camera';
-            window.open(instagramUrl, '_blank');
+            // Detect if user is on mobile
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
             
-            // Also download the image for manual sharing
-            link.click();
+            if (isMobile) {
+              // For mobile devices, try to open Instagram Stories directly
+              const instagramStoriesUrl = 'instagram-stories://share';
+              
+              // First download/save the image
+              link.click();
+              
+              // Then try to open Instagram Stories after a brief delay
+              setTimeout(() => {
+                try {
+                  // Try Instagram Stories deep link first
+                  window.location.href = instagramStoriesUrl;
+                  
+                  // Fallback to Instagram camera if Stories link doesn't work
+                  setTimeout(() => {
+                    if (document.hidden === false) { // If still on our page, try camera
+                      window.location.href = 'instagram://camera';
+                    }
+                  }, 1500);
+                  
+                  // Final fallback to Instagram main app
+                  setTimeout(() => {
+                    if (document.hidden === false) { // If still on our page
+                      window.location.href = 'instagram://';
+                    }
+                  }, 3000);
+                  
+                } catch (error) {
+                  // If all deep links fail, open Instagram web
+                  window.open('https://www.instagram.com/', '_blank');
+                }
+              }, 1000);
+              
+            } else {
+              // For desktop, download image and open Instagram web
+              link.click();
+              window.open('https://www.instagram.com/', '_blank');
+            }
+            
             document.body.removeChild(backdrop2);
             URL.revokeObjectURL(url);
           };
