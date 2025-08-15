@@ -210,6 +210,88 @@ export default function Home() {
     }
   };
 
+  const captureAndDirectShareInstagram = async () => {
+    try {
+      // Temporarily change R letters to orange for Instagram screenshot
+      const rElements = document.querySelectorAll('span[style*="color: rgb(224, 17, 95)"]');
+      const originalRElements: Array<{ element: HTMLElement, originalColor: string }> = [];
+      
+      rElements.forEach((element) => {
+        const htmlElement = element as HTMLElement;
+        originalRElements.push({
+          element: htmlElement,
+          originalColor: htmlElement.style.color
+        });
+        htmlElement.style.color = '#E4A853'; // Orange for Instagram
+      });
+
+      const canvas = await html2canvas(document.body, {
+        useCORS: true,
+        allowTaint: true,
+        scale: 2,
+        backgroundColor: '#ffffff',
+        width: window.innerWidth,
+        height: window.innerHeight,
+        scrollX: 0,
+        scrollY: 0
+      });
+
+      // Restore original R coloring
+      originalRElements.forEach(({ element, originalColor }) => {
+        element.style.color = originalColor;
+      });
+
+      canvas.toBlob((blob) => {
+        if (blob) {
+          const url = URL.createObjectURL(blob);
+          const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+          
+          // Create download link
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = `inspiration-quote-${Date.now()}.png`;
+          link.click();
+
+          // Then immediately try to open Instagram
+          if (isMobile) {
+            // For mobile, try Instagram Stories deep links
+            setTimeout(() => {
+              try {
+                window.location.href = 'instagram-stories://share';
+                
+                setTimeout(() => {
+                  if (document.hidden === false) {
+                    window.location.href = 'instagram://camera';
+                  }
+                }, 1500);
+                
+                setTimeout(() => {
+                  if (document.hidden === false) {
+                    window.location.href = 'instagram://';
+                  }
+                }, 3000);
+                
+              } catch (error) {
+                window.open('https://www.instagram.com/', '_blank');
+              }
+            }, 500);
+          } else {
+            // For desktop, open Instagram web
+            setTimeout(() => {
+              window.open('https://www.instagram.com/', '_blank');
+            }, 500);
+          }
+          
+          URL.revokeObjectURL(url);
+        }
+      }, 'image/png', 1.0);
+
+    } catch (error) {
+      console.error('Failed to capture and share to Instagram:', error);
+      alert('Failed to share to Instagram. Please try again.');
+    }
+  };
+
   const handleShare = () => {
     if (!quote) return;
 
@@ -269,7 +351,7 @@ export default function Home() {
     };
     instagramBtn.onclick = async () => {
       document.body.removeChild(backdrop);
-      await captureAndShareInstagram();
+      await captureAndDirectShareInstagram();
     };
     
     const twitterBtn = document.createElement('button');
