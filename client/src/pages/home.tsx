@@ -252,35 +252,28 @@ export default function Home() {
           link.download = `inspiration-quote-${Date.now()}.png`;
           link.click();
 
-          // Then immediately try to open Instagram
-          if (isMobile) {
-            // For mobile, try Instagram Stories deep links
-            setTimeout(() => {
+          // Then try to open Instagram app/web
+          setTimeout(() => {
+            if (isMobile) {
+              // For mobile, try Instagram app first, then web fallback
               try {
-                window.location.href = 'instagram-stories://share';
+                window.location.href = 'instagram://';
                 
+                // Fallback to web if app doesn't open
                 setTimeout(() => {
                   if (document.hidden === false) {
-                    window.location.href = 'instagram://camera';
+                    window.open('https://www.instagram.com/', '_blank');
                   }
-                }, 1500);
-                
-                setTimeout(() => {
-                  if (document.hidden === false) {
-                    window.location.href = 'instagram://';
-                  }
-                }, 3000);
+                }, 2000);
                 
               } catch (error) {
                 window.open('https://www.instagram.com/', '_blank');
               }
-            }, 500);
-          } else {
-            // For desktop, open Instagram web
-            setTimeout(() => {
+            } else {
+              // For desktop, open Instagram web
               window.open('https://www.instagram.com/', '_blank');
-            }, 500);
-          }
+            }
+          }, 500);
           
           URL.revokeObjectURL(url);
         }

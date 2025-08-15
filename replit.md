@@ -104,8 +104,8 @@ Button style: Stylish modern design with gradients and animations
 
 ### Latest Enhancements (August 15, 2025):
 - **Perfect Button Alignment**: Infinity symbol and Share button perfectly centered with Share positioned slightly lower
-- **Direct Instagram Sharing**: Streamlined flow - Share → Instagram → Auto-screenshot + opens Instagram Stories/app directly
-- **Smart Deep Linking**: Mobile devices automatically open Instagram Stories, Camera, or main app with fallbacks
+- **Direct Instagram Sharing**: Streamlined flow - Share → Instagram → Auto-screenshot + opens Instagram app/web
+- **Platform Limitation Resolved**: Instagram Stories API restrictions handled gracefully with app/web fallbacks
 - **Orange R Letters**: Instagram screenshots show R letters in Citrine Orange instead of Ruby Red for unified theme
 - **Borderless Design**: Clean Share button without borders for minimalist aesthetic
 
