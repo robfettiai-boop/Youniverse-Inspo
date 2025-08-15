@@ -168,15 +168,15 @@ export default function Home() {
       left: 50%;
       transform: translate(-50%, -50%);
       background: white;
-      border: 1px solid black;
+      border: 1px solid #132448;
       padding: 20px;
       z-index: 1000;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      min-width: 200px;
+      gap: 15px;
+      min-width: 250px;
       border-radius: 10px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 5px 20px rgba(19, 36, 72, 0.3);
     `;
     
     const backdrop = document.createElement('div');
@@ -191,32 +191,60 @@ export default function Home() {
       z-index: 999;
     `;
     
-    const twitterBtn = document.createElement('button');
-    twitterBtn.textContent = '🐦 Share on Twitter';
-    twitterBtn.style.cssText = 'padding: 12px; border: 1px solid #1da1f2; background: white; cursor: pointer; border-radius: 6px; color: #1da1f2; font-weight: 500;';
-    twitterBtn.onclick = () => {
-      window.open(`https://twitter.com/intent/tweet?text=${shareText}&url=${currentUrl}`, '_blank');
-      document.body.removeChild(backdrop);
-    };
-    
     const instagramBtn = document.createElement('button');
-    instagramBtn.textContent = '📸 Share on Instagram Story';
-    instagramBtn.style.cssText = 'padding: 12px; border: 1px solid #e91e63; background: white; cursor: pointer; border-radius: 6px; color: #e91e63; font-weight: 500;';
+    instagramBtn.textContent = 'Share on Instagram';
+    instagramBtn.style.cssText = `
+      padding: 15px; 
+      border: 1px solid #132448; 
+      background: white; 
+      cursor: pointer; 
+      border-radius: 6px; 
+      color: #132448; 
+      font-weight: 500;
+      transition: all 0.2s ease;
+    `;
+    instagramBtn.onmouseenter = () => {
+      instagramBtn.style.backgroundColor = '#132448';
+      instagramBtn.style.color = 'white';
+    };
+    instagramBtn.onmouseleave = () => {
+      instagramBtn.style.backgroundColor = 'white';
+      instagramBtn.style.color = '#132448';
+    };
     instagramBtn.onclick = async () => {
       document.body.removeChild(backdrop);
       await captureAndShareInstagram();
     };
     
-    const closeBtn = document.createElement('button');
-    closeBtn.textContent = 'Cancel';
-    closeBtn.style.cssText = 'padding: 10px; border: 1px solid gray; background: white; cursor: pointer; border-radius: 6px; color: #666;';
-    closeBtn.onclick = () => document.body.removeChild(backdrop);
+    const twitterBtn = document.createElement('button');
+    twitterBtn.textContent = 'Share on X';
+    twitterBtn.style.cssText = `
+      padding: 15px; 
+      border: 1px solid #132448; 
+      background: white; 
+      cursor: pointer; 
+      border-radius: 6px; 
+      color: #132448; 
+      font-weight: 500;
+      transition: all 0.2s ease;
+    `;
+    twitterBtn.onmouseenter = () => {
+      twitterBtn.style.backgroundColor = '#132448';
+      twitterBtn.style.color = 'white';
+    };
+    twitterBtn.onmouseleave = () => {
+      twitterBtn.style.backgroundColor = 'white';
+      twitterBtn.style.color = '#132448';
+    };
+    twitterBtn.onclick = () => {
+      window.open(`https://twitter.com/intent/tweet?text=${shareText}&url=${currentUrl}`, '_blank');
+      document.body.removeChild(backdrop);
+    };
     
     backdrop.onclick = () => document.body.removeChild(backdrop);
     
-    shareMenu.appendChild(twitterBtn);
     shareMenu.appendChild(instagramBtn);
-    shareMenu.appendChild(closeBtn);
+    shareMenu.appendChild(twitterBtn);
     backdrop.appendChild(shareMenu);
     document.body.appendChild(backdrop);
   };
