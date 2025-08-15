@@ -30,12 +30,12 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
 
       <div className="flex flex-row gap-8 justify-center items-center">
         <button 
-          className="group transform hover:scale-110 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 inline-flex items-center justify-center px-6 py-3 h-12 w-20"
+          className="group transform hover:scale-110 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center px-6 py-3 h-12 w-20"
           onClick={onNewQuote}
           disabled={isLoading}
         >
           {isLoading ? (
-            <span className="text-2xl" style={{ color: '#132448' }}>⟲</span>
+            <span className="text-2xl flex items-center justify-center" style={{ color: '#132448' }}>⟲</span>
           ) : (
             <img 
               src={infinityImage} 
@@ -46,9 +46,10 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
         </button>
         
         <button 
-          className="transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed h-12 w-20 inline-flex items-center justify-center px-6 py-3"
+          className="transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed h-12 w-20 flex items-center justify-center px-6 py-3"
           style={{ 
-            color: '#132448'
+            color: '#132448',
+            lineHeight: '1'
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.color = '#0f1a35';
@@ -59,7 +60,7 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
           onClick={onShare}
           disabled={!quote}
         >
-          Share
+          <span className="flex items-center">Share</span>
         </button>
       </div>
     </div>
