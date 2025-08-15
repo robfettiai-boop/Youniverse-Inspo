@@ -322,7 +322,7 @@ export default function Home() {
         {/* Slogan - centered */}
         <div className="flex justify-center w-full">
           <p className="text-lg font-medium tracking-wide text-center" style={{ color: '#9966CC' }}>
-            Take nothing for granted..
+            Take nothing for granted
           </p>
         </div>
       </div>
