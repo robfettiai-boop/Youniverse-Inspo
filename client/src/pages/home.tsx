@@ -75,46 +75,49 @@ export default function Home() {
             left: 50%;
             transform: translate(-50%, -50%);
             background: white;
-            border: 2px solid #e91e63;
+            border: 2px solid #E4A853;
             border-radius: 15px;
             padding: 30px;
             z-index: 1001;
             text-align: center;
             max-width: 400px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(228, 168, 83, 0.3);
           `;
           
           instructionDiv.innerHTML = `
-            <h3 style="margin: 0 0 15px 0; color: #e91e63; font-size: 18px;">📱 Share to Instagram Story</h3>
-            <p style="margin: 0 0 20px 0; color: #666; line-height: 1.5;">
+            <h3 style="margin: 0 0 15px 0; color: #E4A853; font-size: 18px;">📱 Share to Instagram Story</h3>
+            <p style="margin: 0 0 20px 0; color: #E4A853; line-height: 1.5;">
               Image captured! Choose how to share:
             </p>
             <div style="display: flex; flex-direction: column; gap: 10px;">
               <button id="download-btn" style="
                 padding: 12px 20px; 
-                background: linear-gradient(135deg, #e91e63, #ad1457); 
+                background: #E4A853; 
                 color: white; 
                 border: none; 
                 border-radius: 8px; 
                 cursor: pointer;
                 font-weight: bold;
+                transition: all 0.2s ease;
               ">📥 Download Image</button>
               <button id="instagram-app-btn" style="
                 padding: 12px 20px; 
-                background: linear-gradient(135deg, #405de6, #833ab4, #c13584, #e1306c, #fd1d1d); 
+                background: #E4A853; 
                 color: white; 
                 border: none; 
                 border-radius: 8px; 
                 cursor: pointer;
                 font-weight: bold;
+                transition: all 0.2s ease;
               ">📱 Open Instagram App</button>
               <button id="close-instruction-btn" style="
                 padding: 8px 16px; 
                 background: transparent; 
-                color: #666; 
-                border: 1px solid #ddd; 
+                color: #E4A853; 
+                border: 1px solid #E4A853; 
                 border-radius: 6px; 
                 cursor: pointer;
+                transition: all 0.2s ease;
               ">Cancel</button>
             </div>
           `;
