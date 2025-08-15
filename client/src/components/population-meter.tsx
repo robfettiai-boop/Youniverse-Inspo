@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { makeLettersColored } from '../utils/redR';
 
 interface PopulationData {
   birthsToday: string;
@@ -119,16 +118,16 @@ export default function PopulationMeter() {
     <div className="text-gray-600 space-y-3 text-center">
       <div className="flex items-center justify-center gap-6">
         <div className="transition-all duration-300">
-          <span className="font-mono text-lg font-medium">{makeLettersColored(`Births today: ${displayBirths}`)}</span>
+          <span className="font-mono text-lg font-medium">{`Births today: ${displayBirths}`}</span>
         </div>
         <div className="transition-all duration-300">
-          <span className="font-mono text-lg font-medium">{makeLettersColored(`Deaths today: ${displayDeaths}`)}</span>
+          <span className="font-mono text-lg font-medium">{`Deaths today: ${displayDeaths}`}</span>
         </div>
       </div>
       
       {data?.source && (
         <div className="text-xs text-gray-400 mt-2">
-          {makeLettersColored(`Updated: ${lastUpdate.toLocaleTimeString()}`)}
+          {`Updated: ${lastUpdate.toLocaleTimeString()}`}
         </div>
       )}
     </div>
