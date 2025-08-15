@@ -46,7 +46,7 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
         </button>
         
         <button 
-          className="px-6 py-3 border transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed h-12 flex items-center"
+          className="px-6 py-3 border transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed h-12 flex items-center text-xl"
           style={{ 
             color: '#132448', 
             borderColor: '#132448',
