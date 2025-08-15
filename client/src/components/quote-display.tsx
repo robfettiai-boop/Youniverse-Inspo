@@ -47,7 +47,7 @@ export default function QuoteDisplay({ quote, isLoading, onNewQuote, onShare }: 
           </button>
         </div>
         
-        <div className="flex items-center justify-center w-20 h-12">
+        <div className="flex items-center justify-center w-20 h-12" style={{ marginTop: '4px' }}>
           <button 
             className="transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center w-full h-full"
             style={{ 
