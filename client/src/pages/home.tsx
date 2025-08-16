@@ -210,6 +210,32 @@ export default function Home() {
     }
   };
 
+  // Function to show toast notification
+  const showToast = (message: string, type: 'success' | 'error' = 'success') => {
+    const toast = document.createElement('div');
+    toast.className = `fixed top-4 right-4 z-50 px-6 py-3 rounded-lg shadow-lg font-bold text-white transition-all duration-300 transform`;
+    toast.style.backgroundColor = type === 'success' ? '#4CAF50' : '#f44336';
+    toast.textContent = message;
+    toast.style.transform = 'translateX(100%)';
+    
+    document.body.appendChild(toast);
+    
+    // Slide in
+    setTimeout(() => {
+      toast.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Slide out and remove
+    setTimeout(() => {
+      toast.style.transform = 'translateX(100%)';
+      setTimeout(() => {
+        if (document.body.contains(toast)) {
+          document.body.removeChild(toast);
+        }
+      }, 300);
+    }, 3000);
+  };
+
   const captureAndDirectShareInstagram = async () => {
     try {
       // Temporarily change R letters to orange for Instagram screenshot
@@ -355,25 +381,7 @@ export default function Home() {
       // Copy website link to clipboard for Instagram sharing
       try {
         await navigator.clipboard.writeText(window.location.href);
-        // Show clear success feedback
-        const originalText = instagramBtn.textContent;
-        const originalBackgroundColor = instagramBtn.style.backgroundColor;
-        const originalColor = instagramBtn.style.color;
-        
-        instagramBtn.textContent = '✓ Link Copied!';
-        instagramBtn.style.backgroundColor = '#4CAF50';
-        instagramBtn.style.color = 'white';
-        instagramBtn.style.fontWeight = 'bold';
-        instagramBtn.style.transform = 'scale(1.05)';
-        instagramBtn.style.transition = 'all 0.3s ease';
-        
-        setTimeout(() => {
-          instagramBtn.textContent = originalText;
-          instagramBtn.style.backgroundColor = originalBackgroundColor;
-          instagramBtn.style.color = originalColor;
-          instagramBtn.style.fontWeight = 'normal';
-          instagramBtn.style.transform = 'scale(1)';
-        }, 2000);
+        showToast('✓ Link copied to clipboard!');
       } catch (error) {
         console.error('Failed to copy link:', error);
         // Fallback for browsers that don't support clipboard API
@@ -383,27 +391,10 @@ export default function Home() {
         textArea.select();
         try {
           document.execCommand('copy');
-          const originalText = instagramBtn.textContent;
-          const originalBackgroundColor = instagramBtn.style.backgroundColor;
-          const originalColor = instagramBtn.style.color;
-          
-          instagramBtn.textContent = '✓ Link Copied!';
-          instagramBtn.style.backgroundColor = '#4CAF50';
-          instagramBtn.style.color = 'white';
-          instagramBtn.style.fontWeight = 'bold';
-          instagramBtn.style.transform = 'scale(1.05)';
-          instagramBtn.style.transition = 'all 0.3s ease';
-          
-          setTimeout(() => {
-            instagramBtn.textContent = originalText;
-            instagramBtn.style.backgroundColor = originalBackgroundColor;
-            instagramBtn.style.color = originalColor;
-            instagramBtn.style.fontWeight = 'normal';
-            instagramBtn.style.transform = 'scale(1)';
-          }, 2000);
+          showToast('✓ Link copied to clipboard!');
         } catch (fallbackError) {
           console.error('Fallback copy failed:', fallbackError);
-          alert('Failed to copy link. Please copy manually: ' + window.location.href);
+          showToast('Failed to copy link', 'error');
         }
         document.body.removeChild(textArea);
       }
