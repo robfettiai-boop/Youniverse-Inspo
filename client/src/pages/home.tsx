@@ -352,7 +352,39 @@ export default function Home() {
     };
     instagramBtn.onclick = async () => {
       document.body.removeChild(backdrop);
-      await captureAndDirectShareInstagram();
+      // Copy website link to clipboard for Instagram sharing
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        // Show brief success feedback
+        const originalText = instagramBtn.textContent;
+        instagramBtn.textContent = 'Link Copied!';
+        instagramBtn.style.backgroundColor = '#4CAF50';
+        setTimeout(() => {
+          instagramBtn.textContent = originalText;
+          instagramBtn.style.backgroundColor = 'white';
+        }, 1500);
+      } catch (error) {
+        console.error('Failed to copy link:', error);
+        // Fallback for browsers that don't support clipboard API
+        const textArea = document.createElement('textarea');
+        textArea.value = window.location.href;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+          document.execCommand('copy');
+          const originalText = instagramBtn.textContent;
+          instagramBtn.textContent = 'Link Copied!';
+          instagramBtn.style.backgroundColor = '#4CAF50';
+          setTimeout(() => {
+            instagramBtn.textContent = originalText;
+            instagramBtn.style.backgroundColor = 'white';
+          }, 1500);
+        } catch (fallbackError) {
+          console.error('Fallback copy failed:', fallbackError);
+          alert('Failed to copy link. Please copy manually: ' + window.location.href);
+        }
+        document.body.removeChild(textArea);
+      }
     };
     
     const twitterBtn = document.createElement('button');

@@ -102,13 +102,13 @@ Button style: Stylish modern design with gradients and animations
 - **Population System**: Live updates showing ~38K births, ~16K deaths per cycle
 - **All Features**: Complete quote system, social links, branding operational
 
-### Latest Enhancements (August 15, 2025):
+### Latest Enhancements (August 15-16, 2025):
 - **Perfect Button Alignment**: Infinity symbol and Share button perfectly centered with Share positioned slightly lower
-- **Direct Instagram Story Access**: Share → Instagram → Auto-screenshot + opens Instagram Story creation directly
-- **Optimized Camera Deep Link**: Uses `instagram://camera` for closest access to Story posting interface
-- **Smart Fallback System**: Camera → Main app → Web fallbacks ensure reliable Instagram access
-- **Orange R Letters**: Instagram screenshots show R letters in Citrine Orange for unified Instagram branding
+- **Simplified Instagram Sharing**: Share → Instagram → Copies website link to clipboard (no app opening)
+- **Visual Feedback**: Button shows "Link Copied!" with green background confirmation for 1.5 seconds
+- **Clipboard Fallback**: Multiple copy methods ensure compatibility across all browsers and devices
 - **Borderless Design**: Clean Share button without borders for minimalist aesthetic
+- **Twitter Integration**: Direct tweet functionality with quote text and website link
 
 ### Technical Notes:
 - **DNS Registrar**: お名前ドットコム (A and TXT records method)
