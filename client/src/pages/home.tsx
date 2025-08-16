@@ -355,14 +355,25 @@ export default function Home() {
       // Copy website link to clipboard for Instagram sharing
       try {
         await navigator.clipboard.writeText(window.location.href);
-        // Show brief success feedback
+        // Show clear success feedback
         const originalText = instagramBtn.textContent;
-        instagramBtn.textContent = 'Link Copied!';
+        const originalBackgroundColor = instagramBtn.style.backgroundColor;
+        const originalColor = instagramBtn.style.color;
+        
+        instagramBtn.textContent = '✓ Link Copied!';
         instagramBtn.style.backgroundColor = '#4CAF50';
+        instagramBtn.style.color = 'white';
+        instagramBtn.style.fontWeight = 'bold';
+        instagramBtn.style.transform = 'scale(1.05)';
+        instagramBtn.style.transition = 'all 0.3s ease';
+        
         setTimeout(() => {
           instagramBtn.textContent = originalText;
-          instagramBtn.style.backgroundColor = 'white';
-        }, 1500);
+          instagramBtn.style.backgroundColor = originalBackgroundColor;
+          instagramBtn.style.color = originalColor;
+          instagramBtn.style.fontWeight = 'normal';
+          instagramBtn.style.transform = 'scale(1)';
+        }, 2000);
       } catch (error) {
         console.error('Failed to copy link:', error);
         // Fallback for browsers that don't support clipboard API
@@ -373,12 +384,23 @@ export default function Home() {
         try {
           document.execCommand('copy');
           const originalText = instagramBtn.textContent;
-          instagramBtn.textContent = 'Link Copied!';
+          const originalBackgroundColor = instagramBtn.style.backgroundColor;
+          const originalColor = instagramBtn.style.color;
+          
+          instagramBtn.textContent = '✓ Link Copied!';
           instagramBtn.style.backgroundColor = '#4CAF50';
+          instagramBtn.style.color = 'white';
+          instagramBtn.style.fontWeight = 'bold';
+          instagramBtn.style.transform = 'scale(1.05)';
+          instagramBtn.style.transition = 'all 0.3s ease';
+          
           setTimeout(() => {
             instagramBtn.textContent = originalText;
-            instagramBtn.style.backgroundColor = 'white';
-          }, 1500);
+            instagramBtn.style.backgroundColor = originalBackgroundColor;
+            instagramBtn.style.color = originalColor;
+            instagramBtn.style.fontWeight = 'normal';
+            instagramBtn.style.transform = 'scale(1)';
+          }, 2000);
         } catch (fallbackError) {
           console.error('Fallback copy failed:', fallbackError);
           alert('Failed to copy link. Please copy manually: ' + window.location.href);
