@@ -210,30 +210,51 @@ export default function Home() {
     }
   };
 
-  // Function to show toast notification
+  // Function to show sophisticated toast notification
   const showToast = (message: string, type: 'success' | 'error' = 'success') => {
     const toast = document.createElement('div');
-    toast.className = `fixed top-4 right-4 z-50 px-6 py-3 rounded-lg shadow-lg font-bold text-white transition-all duration-300 transform`;
-    toast.style.backgroundColor = type === 'success' ? '#4CAF50' : '#f44336';
+    toast.className = `fixed top-8 right-8 z-50 px-8 py-4 backdrop-blur-sm border transition-all duration-500 transform`;
+    
+    // Sophisticated styling matching website theme
+    if (type === 'success') {
+      toast.style.background = 'rgba(255, 255, 255, 0.95)';
+      toast.style.border = '2px solid #132448';
+      toast.style.color = '#132448';
+      toast.style.boxShadow = '0 8px 32px rgba(19, 36, 72, 0.15)';
+    } else {
+      toast.style.background = 'rgba(255, 255, 255, 0.95)';
+      toast.style.border = '2px solid #dc2626';
+      toast.style.color = '#dc2626';
+      toast.style.boxShadow = '0 8px 32px rgba(220, 38, 38, 0.15)';
+    }
+    
+    toast.style.borderRadius = '16px';
+    toast.style.fontFamily = 'Inter, sans-serif';
+    toast.style.fontSize = '15px';
+    toast.style.fontWeight = '600';
+    toast.style.letterSpacing = '0.025em';
     toast.textContent = message;
-    toast.style.transform = 'translateX(100%)';
+    toast.style.transform = 'translateX(120%) scale(0.9)';
+    toast.style.opacity = '0';
     
     document.body.appendChild(toast);
     
-    // Slide in
+    // Smooth entrance animation
     setTimeout(() => {
-      toast.style.transform = 'translateX(0)';
-    }, 100);
+      toast.style.transform = 'translateX(0) scale(1)';
+      toast.style.opacity = '1';
+    }, 50);
     
-    // Slide out and remove
+    // Elegant exit animation
     setTimeout(() => {
-      toast.style.transform = 'translateX(100%)';
+      toast.style.transform = 'translateX(120%) scale(0.95)';
+      toast.style.opacity = '0';
       setTimeout(() => {
         if (document.body.contains(toast)) {
           document.body.removeChild(toast);
         }
-      }, 300);
-    }, 3000);
+      }, 500);
+    }, 2500);
   };
 
   const captureAndDirectShareInstagram = async () => {
