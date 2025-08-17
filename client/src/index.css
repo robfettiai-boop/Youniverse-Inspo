@@ -64,6 +64,30 @@
   --font-mono: 'Vogue', Menlo, monospace;
 }
 
+/* Fade in/out animation for inspiration slogan */
+@keyframes fadeInOut {
+  0% { 
+    opacity: 0; 
+    transform: translateY(10px); 
+  }
+  20% { 
+    opacity: 1; 
+    transform: translateY(0px); 
+  }
+  80% { 
+    opacity: 1; 
+    transform: translateY(0px); 
+  }
+  100% { 
+    opacity: 0; 
+    transform: translateY(-10px); 
+  }
+}
+
+.inspiration-fade {
+  animation: fadeInOut 8s ease-in-out infinite;
+}
+
 .dark {
   --background: hsl(0, 0%, 0%);
   --foreground: hsl(200, 6.6667%, 91.1765%);
