@@ -117,10 +117,10 @@ export default function PopulationMeter() {
   return (
     <div className="space-y-3 text-center" style={{ color: '#132448' }}>
       <div className="flex items-center justify-center gap-6">
-        <div className="transition-all duration-300">
+        <div className="transition-all duration-300 inspiration-fade">
           <span className="font-mono text-lg font-medium">{`Births today: ${displayBirths}`}</span>
         </div>
-        <div className="transition-all duration-300">
+        <div className="transition-all duration-300 inspiration-fade">
           <span className="font-mono text-lg font-medium">{`Deaths today: ${displayDeaths}`}</span>
         </div>
       </div>
