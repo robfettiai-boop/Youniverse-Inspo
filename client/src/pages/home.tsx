@@ -477,7 +477,7 @@ export default function Home() {
           <Music size={24} />
         </a>
         <a 
-          href="#" 
+          href="https://www.learnyourself.shop" 
           target="_blank" 
           rel="noopener noreferrer"
           className="hover:text-orange-500 transition-colors duration-300"
