@@ -459,7 +459,7 @@ export default function Home() {
       {/* Social Icons - stay in top right corner */}
       <div className="absolute top-4 right-4 flex gap-4">
         <a 
-          href="https://www.instagram.com/robfettuccino?igsh=NGgxaTFmc3ZweWVp" 
+          href="https://www.instagram.com/learnyourself.jp_?igsh=MWxtemNpOG5uNmpiZg%3D%3D&utm_source=qr" 
           target="_blank" 
           rel="noopener noreferrer"
           className="hover:text-pink-500 transition-colors duration-300"
