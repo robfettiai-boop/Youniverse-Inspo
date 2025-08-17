@@ -515,7 +515,7 @@ export default function Home() {
 
         {/* Slogan - centered */}
         <div className="flex justify-center w-full">
-          <p className="text-lg font-medium tracking-wide text-center inspiration-fade" style={{ color: '#BC002D' }}>
+          <p className="text-lg font-medium tracking-wide text-center inspiration-fade" style={{ color: '#9FB8C5' }}>
             The highest human act is to inspire
           </p>
         </div>
