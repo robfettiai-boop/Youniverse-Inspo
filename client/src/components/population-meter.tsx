@@ -126,7 +126,7 @@ export default function PopulationMeter() {
       </div>
       
       {data?.source && (
-        <div className="text-xs mt-2" style={{ color: '#132448', opacity: 0.7 }}>
+        <div className="text-xs mt-2 inspiration-fade" style={{ color: '#132448', opacity: 0.7 }}>
           {`Updated: ${lastUpdate.toLocaleTimeString()}`}
         </div>
       )}
