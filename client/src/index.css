@@ -88,6 +88,26 @@
   animation: fadeInOut 8s ease-in-out infinite;
 }
 
+/* Shiny effect for slogan */
+.shiny-text {
+  background: linear-gradient(110deg, #D946EF 45%, #fff 50%, #D946EF 55%);
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 2.5s ease-in-out infinite;
+  position: relative;
+}
+
+@keyframes shine {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
 .dark {
   --background: hsl(0, 0%, 0%);
   --foreground: hsl(200, 6.6667%, 91.1765%);
