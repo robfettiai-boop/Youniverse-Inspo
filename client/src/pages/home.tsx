@@ -3,7 +3,7 @@ import type { Quote } from "@shared/schema";
 import QuoteDisplay from "@/components/quote-display";
 import PopulationMeter from "@/components/population-meter";
 import brandLogo from "@assets/b3eaf067-b59f-496e-9dd8-99bfa0cc88e0_1754836286091.png";
-import { Instagram, Music } from "lucide-react";
+import { Instagram, Music, ShoppingBag } from "lucide-react";
 import { makeLettersColored } from "@/utils/redR";
 import html2canvas from "html2canvas";
 
@@ -475,6 +475,15 @@ export default function Home() {
           style={{ color: '#132448' }}
         >
           <Music size={24} />
+        </a>
+        <a 
+          href="#" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="hover:text-orange-500 transition-colors duration-300"
+          style={{ color: '#132448' }}
+        >
+          <ShoppingBag size={24} />
         </a>
       </div>
 
