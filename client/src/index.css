@@ -95,7 +95,7 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shine 4.5s ease-in-out infinite;
+  animation: shine 7s ease-in-out infinite;
   position: relative;
 }
 
