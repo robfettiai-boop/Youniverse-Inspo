@@ -3,6 +3,63 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertQuoteSchema } from "@shared/schema";
 
+// Fetch real-time population data from Worldometers.info
+async function fetchWorldometersData(): Promise<{
+  success: boolean;
+  currentPopulation?: string;
+  birthsToday?: string;
+  deathsToday?: string;
+  error?: string;
+}> {
+  try {
+    const response = await fetch('https://www.worldometers.info/world-population/', {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.5'
+      }
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    
+    const html = await response.text();
+    
+    // Extract population data using improved regex patterns
+    const currentPopMatch = html.match(/id="world-population"[^>]*>([^<]+)/i) || 
+                           html.match(/class="counter-number"[^>]*>([^<]+)/i);
+    const birthsMatch = html.match(/id="births_today"[^>]*>([^<]+)/i) || 
+                       html.match(/births.*?counter-number[^>]*>([^<]+)/i);
+    const deathsMatch = html.match(/id="deaths_today"[^>]*>([^<]+)/i) || 
+                       html.match(/deaths.*?counter-number[^>]*>([^<]+)/i);
+    
+    const currentPopulation = currentPopMatch?.[1]?.trim().replace(/\D/g, '') || '';
+    const birthsToday = birthsMatch?.[1]?.trim().replace(/\D/g, '') || '';
+    const deathsToday = deathsMatch?.[1]?.trim().replace(/\D/g, '') || '';
+    
+    console.log('Worldometers extraction:', { currentPopulation, birthsToday, deathsToday });
+    
+    if (currentPopulation && birthsToday && deathsToday) {
+      return {
+        success: true,
+        currentPopulation: parseInt(currentPopulation).toLocaleString(),
+        birthsToday: parseInt(birthsToday).toLocaleString(),
+        deathsToday: parseInt(deathsToday).toLocaleString()
+      };
+    }
+    
+    throw new Error('Could not extract population data from page');
+    
+  } catch (error) {
+    console.error('Error fetching Worldometers data:', error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : 'Unknown error'
+    };
+  }
+}
+
 export async function registerRoutes(app: Express): Promise<Server> {
   // Get random quote
   app.get("/api/quotes/random", async (_req, res) => {
@@ -47,36 +104,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       console.log('Population request:', { timezone, region });
 
-      // Try RapidAPI Worldometers endpoint first for global data
-      const rapidApiResponse = await fetch('https://worldometers.p.rapidapi.com/population', {
-        headers: {
-          'X-RapidAPI-Key': process.env.RAPIDAPI_KEY || 'demo-key',
-          'X-RapidAPI-Host': 'worldometers.p.rapidapi.com'
-        }
-      });
-
-      if (rapidApiResponse.ok) {
-        const apiData = await rapidApiResponse.json();
-        console.log('RapidAPI response:', apiData);
+      // Try to get real-time data from Worldometers.info
+      const worldometersData = await fetchWorldometersData();
+      
+      if (worldometersData.success && worldometersData.birthsToday && worldometersData.deathsToday) {
+        console.log('Got real Worldometers data:', worldometersData);
         
-        if (apiData && (apiData.births_today || apiData.deaths_today)) {
-          // Apply regional scaling if not global
-          const scaleFactor = getRegionalScaleFactor(region);
-          const birthsToday = Math.floor(parseInt(apiData.births_today || '0') * scaleFactor);
-          const deathsToday = Math.floor(parseInt(apiData.deaths_today || '0') * scaleFactor);
-          
-          return res.json({
-            birthsToday: birthsToday.toLocaleString(),
-            deathsToday: deathsToday.toLocaleString(),
-            timestamp: new Date().toISOString(),
-            source: 'rapidapi-worldometers',
-            region: region,
-            timezone: timezone
-          });
-        }
+        // Apply regional scaling if not global
+        const scaleFactor = getRegionalScaleFactor(region);
+        const rawBirths = parseInt(worldometersData.birthsToday.replace(/,/g, ''));
+        const rawDeaths = parseInt(worldometersData.deathsToday.replace(/,/g, ''));
+        
+        const birthsToday = Math.floor(rawBirths * scaleFactor);
+        const deathsToday = Math.floor(rawDeaths * scaleFactor);
+        
+        return res.json({
+          birthsToday: birthsToday.toLocaleString(),
+          deathsToday: deathsToday.toLocaleString(),
+          currentPopulation: worldometersData.currentPopulation,
+          timestamp: new Date().toISOString(),
+          source: 'worldometers.info-live',
+          region: region,
+          timezone: timezone
+        });
       }
 
-      // Generate global numbers but calculated based on user's local timezone
+      console.log('Worldometers data failed, using calculated data:', worldometersData.error);
+
+      // Fallback: Generate global numbers but calculated based on user's local timezone
       const globalData = calculateGlobalPopulationForTimezone(timezone);
       
       console.log('Generated global population data for timezone:', timezone, globalData);
