@@ -56,8 +56,8 @@ export default function WorldPopulationMeter() {
       >
         {displayPopulation}
       </div>
-      <div className="text-xs opacity-50" style={{ color: '#132448' }}>
-        Live Updates
+      <div className="text-xs font-normal opacity-50" style={{ color: '#132448' }}>
+        live update
       </div>
     </div>
   );

@@ -161,7 +161,7 @@ export default function PopulationMeter() {
         </div>
       </div>
       
-      <div className="text-xs mt-2" style={{ color: '#132448', opacity: 0.7 }}>
+      <div className="text-xs font-normal mt-2" style={{ color: '#132448', opacity: 0.7 }}>
         live update
       </div>
     </div>
