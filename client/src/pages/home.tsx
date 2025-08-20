@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import type { Quote } from "@shared/schema";
 import QuoteDisplay from "@/components/quote-display";
 import PopulationMeter from "@/components/population-meter";
+import WorldPopulationMeter from "@/components/world-population-meter";
 import brandLogo from "@assets/b3eaf067-b59f-496e-9dd8-99bfa0cc88e0_1754836286091.png";
 import { Instagram, Music, ShoppingBag, Palette } from "lucide-react";
 import { makeLettersColored } from "@/utils/redR";
@@ -517,9 +518,10 @@ export default function Home() {
           />
         </div>
 
-        {/* Population Meter - centered with extra bottom spacing */}
-        <div className="flex justify-center mb-16">
+        {/* Population Meters - centered with extra bottom spacing */}
+        <div className="flex flex-col items-center space-y-8 mb-16">
           <PopulationMeter />
+          <WorldPopulationMeter />
         </div>
 
         {/* Slogan - centered */}

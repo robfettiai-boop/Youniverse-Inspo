@@ -108,6 +108,31 @@
   }
 }
 
+/* World Population Counter Animations */
+.world-population-counter {
+  animation: rotateAndFade 12s ease-in-out infinite;
+  transform-origin: center center;
+}
+
+@keyframes rotateAndFade {
+  0% {
+    opacity: 0.3;
+    transform: rotateY(-15deg) scale(0.95);
+  }
+  25% {
+    opacity: 1;
+    transform: rotateY(0deg) scale(1);
+  }
+  75% {
+    opacity: 1;
+    transform: rotateY(0deg) scale(1);
+  }
+  100% {
+    opacity: 0.3;
+    transform: rotateY(15deg) scale(0.95);
+  }
+}
+
 .dark {
   --background: hsl(0, 0%, 0%);
   --foreground: hsl(200, 6.6667%, 91.1765%);
