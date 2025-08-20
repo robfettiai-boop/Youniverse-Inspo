@@ -85,7 +85,35 @@
 }
 
 .inspiration-fade {
-  animation: fadeInOut 8s ease-in-out infinite;
+  animation: fadeInOut 16s ease-in-out infinite;
+}
+
+.world-population-fade {
+  animation: fadeInOutAlternate 16s ease-in-out infinite;
+}
+
+/* Alternating fade animation - starts when first one ends */
+@keyframes fadeInOutAlternate {
+  0% { 
+    opacity: 1; 
+    transform: translateY(0px); 
+  }
+  20% { 
+    opacity: 0; 
+    transform: translateY(-10px); 
+  }
+  50% { 
+    opacity: 0; 
+    transform: translateY(10px); 
+  }
+  70% { 
+    opacity: 1; 
+    transform: translateY(0px); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0px); 
+  }
 }
 
 /* Shiny effect for slogan */
@@ -108,30 +136,7 @@
   }
 }
 
-/* World Population Counter Animations */
-.world-population-counter {
-  animation: rotateAndFade 12s ease-in-out infinite;
-  transform-origin: center center;
-}
 
-@keyframes rotateAndFade {
-  0% {
-    opacity: 0.3;
-    transform: rotateY(-15deg) scale(0.95);
-  }
-  25% {
-    opacity: 1;
-    transform: rotateY(0deg) scale(1);
-  }
-  75% {
-    opacity: 1;
-    transform: rotateY(0deg) scale(1);
-  }
-  100% {
-    opacity: 0.3;
-    transform: rotateY(15deg) scale(0.95);
-  }
-}
 
 .dark {
   --background: hsl(0, 0%, 0%);

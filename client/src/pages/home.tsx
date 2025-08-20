@@ -518,10 +518,14 @@ export default function Home() {
           />
         </div>
 
-        {/* Population Meters - centered with extra bottom spacing */}
-        <div className="flex flex-col items-center space-y-8 mb-16">
-          <PopulationMeter />
-          <WorldPopulationMeter />
+        {/* Population Meters - alternating display in same position */}
+        <div className="relative flex justify-center mb-16 h-32">
+          <div className="absolute inset-0 flex justify-center">
+            <PopulationMeter />
+          </div>
+          <div className="absolute inset-0 flex justify-center">
+            <WorldPopulationMeter />
+          </div>
         </div>
 
         {/* Slogan - centered */}
