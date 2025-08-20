@@ -498,13 +498,13 @@ export default function Home() {
       </div>
 
       {/* Main centered content column */}
-      <div className="flex flex-col items-center justify-center space-y-16 max-w-4xl w-full">
+      <div className="flex flex-col items-center justify-center space-y-12 max-w-4xl w-full">
         {/* Brand Logo */}
         <div className="flex justify-center">
           <img 
             src={brandLogo} 
             alt="LearnYourself.jp" 
-            className="h-32 w-auto opacity-95 hover:opacity-100 transition-opacity duration-300"
+            className="h-28 w-auto opacity-95 hover:opacity-100 transition-opacity duration-300"
           />
         </div>
 
@@ -519,7 +519,7 @@ export default function Home() {
         </div>
 
         {/* Population Meters - alternating display in same position */}
-        <div className="relative flex justify-center mb-16 h-32">
+        <div className="relative flex justify-center mb-8 h-24">
           <div className="absolute inset-0 flex justify-center">
             <PopulationMeter />
           </div>
