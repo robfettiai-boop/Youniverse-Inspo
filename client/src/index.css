@@ -64,9 +64,13 @@
   --font-mono: 'Vogue', Menlo, monospace;
 }
 
-/* Fade in/out animation for births/deaths meter */
+/* Fade in/out animation for births/deaths meter - smooth fade in like world population */
 @keyframes fadeInOut {
   0% { 
+    opacity: 0; 
+    transform: translateY(10px); 
+  }
+  20% { 
     opacity: 1; 
     transform: translateY(0px); 
   }
