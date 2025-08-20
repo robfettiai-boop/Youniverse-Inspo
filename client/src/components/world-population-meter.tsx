@@ -47,7 +47,7 @@ export default function WorldPopulationMeter() {
 
   return (
     <div className="flex flex-col items-center space-y-2 world-population-fade">
-      <div className="text-xs font-medium tracking-wider opacity-60" style={{ color: '#132448' }}>
+      <div className="text-xs font-normal tracking-wider opacity-60" style={{ color: '#132448' }}>
         WORLD POPULATION
       </div>
       <div 
