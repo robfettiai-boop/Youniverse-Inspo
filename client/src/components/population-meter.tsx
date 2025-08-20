@@ -151,17 +151,17 @@ export default function PopulationMeter() {
 
 
   return (
-    <div className="space-y-3 text-center" style={{ color: '#132448' }}>
+    <div className="space-y-3 text-center inspiration-fade" style={{ color: '#132448' }}>
       <div className="flex items-center justify-center gap-6">
-        <div className="transition-all duration-300 inspiration-fade">
+        <div className="transition-all duration-300">
           <span className="font-mono text-lg font-medium tabular-nums">{`Births today: ${displayBirths}`}</span>
         </div>
-        <div className="transition-all duration-300 inspiration-fade">
+        <div className="transition-all duration-300">
           <span className="font-mono text-lg font-medium tabular-nums">{`Deaths today: ${displayDeaths}`}</span>
         </div>
       </div>
       
-      <div className="text-xs mt-2 inspiration-fade" style={{ color: '#132448', opacity: 0.7 }}>
+      <div className="text-xs mt-2" style={{ color: '#132448', opacity: 0.7 }}>
         live update
       </div>
     </div>
