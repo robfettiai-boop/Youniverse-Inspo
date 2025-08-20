@@ -92,7 +92,7 @@
   animation: fadeInOutAlternate 16s ease-in-out infinite;
 }
 
-/* Alternating fade animation - clean switch with no overlap */
+/* Alternating fade animation - matches births/deaths meter movement */
 @keyframes fadeInOutAlternate {
   0% { 
     opacity: 0; 
@@ -106,9 +106,13 @@
     opacity: 1; 
     transform: translateY(0px); 
   }
-  100% { 
+  95% { 
     opacity: 1; 
     transform: translateY(0px); 
+  }
+  100% { 
+    opacity: 0; 
+    transform: translateY(-10px); 
   }
 }
 
