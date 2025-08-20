@@ -51,7 +51,7 @@ export default function WorldPopulationMeter() {
         WORLD POPULATION
       </div>
       <div 
-        className="text-xl font-bold tabular-nums"
+        className="text-xl font-normal tabular-nums"
         style={{ color: '#132448' }}
       >
         {displayPopulation}
