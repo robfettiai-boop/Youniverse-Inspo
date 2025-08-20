@@ -92,7 +92,7 @@
   animation: fadeInOutAlternate 16s ease-in-out infinite;
 }
 
-/* Alternating fade animation - matches births/deaths meter movement */
+/* Alternating fade animation - smooth fade in like births/deaths meter */
 @keyframes fadeInOutAlternate {
   0% { 
     opacity: 0; 
@@ -102,7 +102,7 @@
     opacity: 0; 
     transform: translateY(10px); 
   }
-  55% { 
+  70% { 
     opacity: 1; 
     transform: translateY(0px); 
   }
