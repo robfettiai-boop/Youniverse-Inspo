@@ -64,19 +64,19 @@
   --font-mono: 'Vogue', Menlo, monospace;
 }
 
-/* Fade in/out animation for inspiration slogan */
+/* Fade in/out animation for births/deaths meter */
 @keyframes fadeInOut {
   0% { 
+    opacity: 1; 
+    transform: translateY(0px); 
+  }
+  45% { 
+    opacity: 1; 
+    transform: translateY(0px); 
+  }
+  50% { 
     opacity: 0; 
-    transform: translateY(10px); 
-  }
-  20% { 
-    opacity: 1; 
-    transform: translateY(0px); 
-  }
-  80% { 
-    opacity: 1; 
-    transform: translateY(0px); 
+    transform: translateY(-10px); 
   }
   100% { 
     opacity: 0; 
@@ -92,21 +92,17 @@
   animation: fadeInOutAlternate 16s ease-in-out infinite;
 }
 
-/* Alternating fade animation - starts when first one ends */
+/* Alternating fade animation - clean switch with no overlap */
 @keyframes fadeInOutAlternate {
   0% { 
-    opacity: 1; 
-    transform: translateY(0px); 
-  }
-  20% { 
     opacity: 0; 
-    transform: translateY(-10px); 
+    transform: translateY(10px); 
   }
   50% { 
     opacity: 0; 
     transform: translateY(10px); 
   }
-  70% { 
+  55% { 
     opacity: 1; 
     transform: translateY(0px); 
   }
